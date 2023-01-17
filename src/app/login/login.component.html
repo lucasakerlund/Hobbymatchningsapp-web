@@ -1,9 +1,10 @@
-<div class="form-content card p-5">
+<div class="form-content card">
+    <p class="login-header">Skriv in dina uppgifter</p>
     <form class="d-flex justify-content-center flex-column align-items-center">
-        <label for="username">Användarnamn</label>
-        <input type="text" name="username" id="username" class="form-control">
-        <label for="password">Lösenord</label>
-        <input type="password" name="password" id="password" class="form-control">
-        <input type="submit" class="btn btn-primary mt-4">
+        <label for="username" class="username-label mt-3">Användarnamn eller email</label>
+        <input type="text" name="username" id="username" class="form-control" placeholder="Användarnamn">
+        <label for="password" class="password-label mt-3">Lösenord</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="Lösenord">
+        <input type="submit" class="btn btn-primary login-button" value="Logga in">
     </form>
 </div>

@@ -1,7 +1,37 @@
 :host {
+    background-image: url('/assets/login_wallpaper.jpg');
+    background-repeat: no-repeat;
+    background-color: #fff;
+    backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     flex: 1;
+}
+
+.form-content {
+    background-color: rgba(0, 0, 0, 0.575);
+    padding: 4rem 5rem 3rem 5rem;
+    backdrop-filter: blur(5px);
+}
+
+.login-header {
+    color: white;
+    font-size: 2rem;
+}
+
+.username-label {
+    color: #fff;
+}
+
+.password-label {
+    color: #fff;
+}
+
+.login-button {
+    background-color: rgba(101, 240, 37, 0.788);
+    border: none;
+    padding: .7rem 1rem .7rem 1rem;
+    margin-top: 5rem;
 }
