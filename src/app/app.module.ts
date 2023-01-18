@@ -9,6 +9,10 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { FlowComponent } from './flow/flow.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './register/register.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -17,12 +21,15 @@ import { FlowComponent } from './flow/flow.component';
     LoginComponent,
     ProfileComponent,
     ContactsComponent,
-    FlowComponent
+    FlowComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

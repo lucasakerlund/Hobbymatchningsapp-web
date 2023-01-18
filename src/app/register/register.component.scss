@@ -2,7 +2,6 @@
     background-image: url('/assets/login_wallpaper.jpg');
     background-repeat: no-repeat;
     background-color: #fff;
-    backdrop-filter: blur(5px);
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -21,19 +20,30 @@
     font-size: 2rem;
 }
 
-.username-label {
+.username-label, .password-label, .email-label, .first-name-label, .surname-label, .gender-label, .birthdate-label {
     color: #fff;
 }
 
-.password-label {
-    color: #fff;
-}
-
-.login-button {
-    background-color: rgba(101, 240, 37, 0.788);
+.register-button {
+    background-color: rgba(66, 180, 13, 0.788);
     border: none;
     width: 14rem;
     padding: .7rem 1rem .7rem 1rem;
     margin-top: 3rem;
     margin-bottom: 1rem;
+    &:active {
+        background-color: rgba(101, 240, 37, 0.788);
+    }
+}
+
+.icon-calendar {
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.icon-calendar:before {
+    content: 'calendar_month';
+    color: #fff;
+    font-size: 2rem;
 }

@@ -1,0 +1,94 @@
+<div class="form-content card">
+    <p class="login-header">Registera ett konto</p>
+    <form [formGroup]="form" class="d-flex justify-content-center flex-column align-items-center">
+        <label for="first-name" class="first-name-label mt-3">Förnamn</label>
+        <input type="text"
+        [class.is-invalid]="!getControl('first-name').valid && getControl('first-name').touched"
+        [class.is-valid]="getControl('first-name').valid && getControl('first-name').touched"
+        name="email"
+        id="email"
+        class="form-control"
+        placeholder="Förnamn"
+        formControlName="first-name">
+
+        <label for="surname" class="surname-label mt-3">Efternamn</label>
+        <input type="text"
+        [class.is-invalid]="!getControl('surname').valid && getControl('surname').touched"
+        [class.is-valid]="getControl('surname').valid && getControl('surname').touched"
+        name="surname"
+        id="surname"
+        class="form-control"
+        placeholder="Efternamn"
+        formControlName="surname">
+
+        <label for="email" class="email-label mt-3">Email</label>
+        <input type="text"
+        [class.is-invalid]="!getControl('email').valid && getControl('email').touched"
+        [class.is-valid]="getControl('email').valid && getControl('email').touched"
+        name="email"
+        id="email"
+        class="form-control"
+        placeholder="Email"
+        formControlName="email">
+
+        <label for="username" class="username-label mt-3">Användarnamn</label>
+        <input type="text"
+        [class.is-invalid]="!getControl('username').valid && getControl('username').touched"
+        [class.is-valid]="getControl('username').valid && getControl('username').touched"
+        name="username"
+        id="username"
+        class="form-control"
+        placeholder="Användarnamn"
+        formControlName="username">
+
+        <label for="password" class="password-label mt-3">Lösenord</label>
+        <input type="password"
+        [class.is-invalid]="!getControl('password').valid && getControl('password').touched"
+        [class.is-valid]="getControl('password').valid && getControl('password').touched"
+        name="password"
+        id="password"
+        class="form-control"
+        placeholder="Lösenord"
+        formControlName="password">
+
+        <label for="repeat-password" class="password-label mt-3">Upprepa lösenord</label>
+        <input type="password"
+        [class.is-invalid]="!getControl('repeat-password').valid && getControl('repeat-password').touched"
+        [class.is-valid]="getControl('repeat-password').valid && getControl('repeat-password').touched"
+        name="repeat-password"
+        id="repeat-password"
+        class="form-control"
+        placeholder="Upprepa lösenord"
+        formControlName="repeat-password">
+
+        <label for="birthdate" class="birthdate-label mt-3">Födelsedatum</label>
+        <div class="input-group">
+            <input
+            [class.is-invalid]="!getControl('birthdate').valid && getControl('birthdate').touched"
+            [class.is-valid]="getControl('birthdate').valid && getControl('birthdate').touched"
+            class="form-control"
+            name="birthdate"
+            id="birthdate"
+            placeholder="yyyy-mm-dd"
+            name="dp"
+            ngbDatepicker #d="ngbDatepicker">
+            <span class="icon icon-calendar" (click)="d.toggle()" type="button"></span>
+          </div>
+
+        <label for="gender" class="gender-label mt-3">Kön</label>
+        <select
+        [class.is-invalid]="!getControl('gender').valid && getControl('gender').touched"
+        [class.is-valid]="getControl('gender').valid && getControl('gender').touched"
+        name="gender"
+        id="gender"
+        class="form-select"
+        formControlName="gender">
+            <option value="male">Man</option>
+            <option value="female">Kvinna</option>
+            <option value="other">Annat</option>
+        </select>
+
+
+        <input type="submit" class="btn btn-primary register-button" value="Registrera" (click)="register()">
+    </form>
+</div>
