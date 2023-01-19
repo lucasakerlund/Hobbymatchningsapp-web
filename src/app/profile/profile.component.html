@@ -1,9 +1,36 @@
 <div class="profile">
-    <label>Här skall det vara en profilbil sen!</label>
 
-    <label id="username">Användarnamn: {{user.username}}</label>
-    <label id="first-name">Förnamn: {{user.firstName}}</label>
-    <label id="surname">Efternamn: {{user.surname}}</label>
-    <label id="e-mail">Email: {{user.email}}</label>
-    <label id="gender">Kön: {{user.gender}}</label>
+    <div class="first-row">
+        <div class="avatar-gender-container">
+            <div class="avatar-container">
+                <img id="avatar" src="/assets/902671383996268564.webp" alt="">
+            </div>
+                <div class="gender">Kön: Furry</div>
+        </div>
+        <div class="name-description-container">
+            <div class="name">Jimmy Orlando</div>
+            <div class="description-container">
+                <label class="description-label" for="description">Beskrivning</label>
+                <textarea class="description" id="description" rows="6" cols="50" maxlength="300"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="second-row">
+        
+    </div>
+    <div class="third-row"></div>
+
+
+
+    
+
+    <label class="username-label mt-3" id="username">Användarnamn: {{user.username}}</label>
+    <input id="username" type="text">
+    <label class="first-name-label mt-3" id="first-name">Förnamn: {{user.firstName}}</label>
+    <input type="text">
+    <label class="surname-label mt-3" id="surname">Efternamn: {{user.surname}}</label>
+    <input type="text">
+    <label class="e-mail-label mt-3" id="e-mail">Email: {{user.email}}</label>
+    <input type="text">
+    <button class="save-label mt-3">Save</button>
 </div>

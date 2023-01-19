@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { User } from './user.model';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-profile',
