@@ -54,8 +54,4 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  toggleCollapse() {
-    this.optionsExpanded = !this.optionsExpanded;
-  }
-
 }

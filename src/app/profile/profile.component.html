@@ -1,61 +1,53 @@
-<div class="profile-saveButton-container">
+<div class="profile">
 
-    <div class="profile">
-
-        <div class="first-row">
-            <div class="avatar-gender-container">
-                <div class="avatar-container">
-                    <img id="avatar" src="/assets/902671383996268564.webp" alt="">
-                </div>
-                <div class="gender">Kön: Furry</div>
+    <div class="first-row">
+        <div class="avatar-gender-container">
+            <div class="avatar-container">
+                <img id="avatar" src="/assets/902671383996268564.webp" alt="">
             </div>
-            <div class="name-description-container">
-                <div class="name">{{user.firstName}} {{user.surname}}</div>
-                <div class="description-container">
-                    <label class="description-label" for="description">Beskrivning</label>
-                    <textarea class="description" id="description" rows="6" cols="50" maxlength="300">{{user.description}}</textarea>
-                </div>
+            <div class="gender">Kön: Furry</div>
+        </div>
+        <div class="name-description-container">
+            <div class="name">{{user.firstName}} {{user.surname}}</div>
+            <div class="description-container">
+                <label class="description-label" for="description">Beskrivning</label>
+                <textarea class="description" id="description" rows="6" cols="50"
+                    maxlength="300">{{user.description}}</textarea>
             </div>
         </div>
-        <div class="second-row">
-            <div class="hobby-container">
-            <label class="hobbies-text" *ngFor="let hobby of user.hobbies, index as iter">{{hobby}}
-                <span *ngIf="hobby.length -1 != iter" type="button" class="icon icon-add-circle"></span>
-            </label>
+    </div>
+    <div class="second-row">
+        <div class="hobby-container">
+            <div class="hobby" *ngFor="let hobby of user.hobbies, index as iter">
+                <label class="hobby-text">{{hobby}}</label>
+                <span *ngIf="user.hobbies.length -1 == iter" type="button" class="icon icon-add-circle"></span>
             </div>
-            
-        </div>
-        <div class="third-row">
-
         </div>
 
-        <div class="fourth-row">
-            <button *ngIf="!optionsExpanded" (click)="toggleCollapse()" class="advOptionsBtn"
-                id="advOptionsBtn">Avancerade alternativ</button>
-            <button *ngIf="optionsExpanded" (click)="toggleCollapse()" class="advOptionsBtn" id="advOptionsBtn">Dölj
-                alternativ</button>
-
-            <div *ngIf="optionsExpanded" class="adv-options-container">
-                <label class="adv-labels mt-3" id="username">Användarnamn:</label>
-                <input class="fourth-row-inputs" id="username" type="text" value="{{user.username}}">
-                <label class="adv-labels mt-3" id="first-name">Förnamn:</label>
-                <input class="fourth-row-inputs" type="text" value="{{user.firstName}}">
-                <label class="adv-labels mt-3" id="surname">Efternamn:</label>
-                <input class="fourth-row-inputs" type="text" value="{{user.surname}}">
-                <label class="adv-labels mt-3" id="e-mail">Email:</label>
-                <input class="fourth-row-inputs" type="text" value="{{user.email}}">
-            </div>
-
-        </div>
-
-
-
-
+    </div>
+    <div class="third-row">
 
     </div>
 
-    <div class="save-button-div">
-        <button class="save-button">Spara</button>
+    <div class="fourth-row">
+        <button (click)="collapse.toggle()" class="advOptionsBtn"
+            id="advOptionsBtn">{{optionsExpanded ? 'Avancerade alternativ' : 'Dölj alternativ'}}</button>
+
+        <div class="adv-options-container" #collapse="ngbCollapse" [(ngbCollapse)]="optionsExpanded">
+            <label class="adv-labels mt-3" id="username">Användarnamn:</label>
+            <input class="fourth-row-inputs" id="username" type="text" value="{{user.username}}">
+            <label class="adv-labels mt-3" id="first-name">Förnamn:</label>
+            <input class="fourth-row-inputs" type="text" value="{{user.firstName}}">
+            <label class="adv-labels mt-3" id="surname">Efternamn:</label>
+            <input class="fourth-row-inputs" type="text" value="{{user.surname}}">
+            <label class="adv-labels mt-3" id="e-mail">Email:</label>
+            <input class="fourth-row-inputs" type="text" value="{{user.email}}">
+        </div>
+
     </div>
+
+
+
+
 
 </div>
