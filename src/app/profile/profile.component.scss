@@ -8,7 +8,14 @@
     flex: 1;
     
 }
+.profile-saveButton-container{
+    display: flex;
+    justify-content: space-between;
+    align-items:flex-end;
+    height: 100%;
+}
 .profile {
+    width: min-content;
     display: flex;
     flex-direction: column;
     justify-content: top;
@@ -20,6 +27,10 @@
     height: 100%;
     
 }
+.save-button-div{
+    width: 10rem
+}
+
 .first-row{
     
     display: flex;
@@ -83,10 +94,79 @@ padding-right: 4rem;
 
 .second-row{
     width: 90%;
-    height: 15rem;
+    max-height: 20rem;
     background-color: rgba(44, 44, 44, 0.700);
     border: 3px solid orange;
     border-radius: 10px;
+    margin-top: 2rem;    
+}
+
+.icon-add-circle{
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.hobby-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.hobbies-text{
+    align-self: flex-start;
+    color: white;
+    margin: 0.4rem;
+    border: 3px solid orange;
+    background-color: gray;
+}
+
+.third-row{
+
+}
+
+.fourth-row{
+    display: flex;
+    flex-direction: column;
     margin-top: 2rem;
-    
+    align-items: center;
+    justify-content: center;
+}
+
+.advOptionsBtn{
+    background-color: rgb(70, 69, 69);
+    color: white;
+    border-width: 3px;
+    border-color: orange;
+}
+
+.adv-options-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.fourth-row-inputs{
+    background-color: rgb(49, 49, 49);
+    color: white;
+    border: 1.5px solid orange;
+}
+
+.fourth-row-inputs:focus{
+    outline: none;
+}
+
+.adv-labels{
+    color: white;
+}
+
+.save-button{
+    margin-top: 1rem;
+    font-size: 20px;
+    background-color: rgb(70, 69, 69);
+    color:white;
+    border-width: 2px;
+    border-color: orange;
+}
+
+.icon-add-circle::before{
+    content: 'add_circle';
 }

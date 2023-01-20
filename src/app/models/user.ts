@@ -5,4 +5,6 @@ export class User {
     username: string='';
     email: string='';
     gender: string='';
+    description: string='';
+    hobbies: string[] = [];
 }
