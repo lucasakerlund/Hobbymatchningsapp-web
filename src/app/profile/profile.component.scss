@@ -5,6 +5,7 @@
     display: flex;
     justify-content: center;
     height: 100%;
+    position: relative;
 }
 
 .profile {
@@ -18,10 +19,6 @@
     border-right: 3px solid orange;
     background-color: rgba(44, 44, 44, 0.900);
     height: 100%;
-}
-
-.save-button-div{
-    width: 10rem;
 }
 
 .first-row{
@@ -92,16 +89,12 @@
     margin-top: 2rem;    
 }
 
-.icon-add-circle{
-    display: flex;
-    align-items: center;
-    color: white;
-}
-
 .hobby-container{
     display: flex;
     flex-wrap: wrap;
     padding: .5rem;
+    max-height: 250px;
+    overflow: auto;
 }
 
 .hobby {
@@ -110,17 +103,12 @@
 }
 
 .hobby-text{
-
     border: 1px solid orange;
     border-radius: .3rem;
     padding: .2rem .4rem;
     color: #fff;
     margin-right: .5rem;
-
-    // color: white;
-    // margin: 0.4rem;
-    // border: 3px solid orange;
-    // background-color: gray;
+    text-align: center;
 }
 
 .third-row{
@@ -128,6 +116,7 @@
 }
 
 .fourth-row{
+    width: 100%;
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
@@ -136,42 +125,96 @@
 }
 
 .advOptionsBtn{
-    background-color: rgb(70, 69, 69);
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
     color: white;
-    border-width: 3px;
-    border-color: orange;
 }
 
 .adv-options-container{
     display: flex;
     flex-direction: column;
+    background-color: rgba(37, 37, 37, 0.801);
+    padding: 0 1rem;
 }
 
-.fourth-row-inputs{
-    background-color: rgb(49, 49, 49);
+.info-title {
+    margin-top: .5rem;
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.fifth-row {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+    padding: 2rem 0;
+}
+
+.cancel {
+    color: #fff;
+    font-size: 1.1rem;
+    text-decoration: underline;
+}
+
+.save-button {
+    display: flex;
+    justify-content: center;
+    width: 5rem;
+    color: #fff;
+    border: 1px solid orange;
+    padding: .5rem 2rem;
+    margin-left: 1rem;
+
+    &:hover {
+        background-color: rgba(133, 133, 133, 0.247);
+    }
+}
+
+.modal-container {
+    background-color: rgb(27, 27, 27);
+    border: 1px solid orange;
+    border-radius: .5rem;
+
+    .modal-hobby-item-label {
+        color: #fff;
+    }
+
+    .close {
+        color: #fff;
+        font-size: 1.5rem;
+        text-align: center;
+        margin: .5rem;
+        border: 1px solid orange;
+        border-radius: .5rem;
+
+        &:hover {
+            background-color: rgb(70, 70, 70);
+        }
+    }
+}
+
+.icon-add-circle{
+    display: flex;
+    align-items: center;
     color: white;
-    border: 1.5px solid orange;
-}
-
-.fourth-row-inputs:focus{
-    outline: none;
-}
-
-.adv-labels{
-    color: white;
-}
-
-.save-button{
-    margin-top: 1rem;
-    font-size: 20px;
-    background-color: rgb(70, 69, 69);
-    color:white;
-    border-width: 2px;
-    border-color: orange;
 }
 
 .icon-add-circle::before{
     content: 'add_circle';
+}
+
+.icon-expand-less::before{
+    content: 'expand_less';
+}
+
+.icon-expand-more::before{
+    content: 'expand_more';
 }
 
 @media screen and (max-width: 750px) {

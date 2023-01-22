@@ -12,6 +12,7 @@ import { FlowComponent } from './flow/flow.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TextComponent } from './components/text/text.component';
 
 
 @NgModule({
@@ -22,14 +23,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ProfileComponent,
     ContactsComponent,
     FlowComponent,
-    RegisterComponent
+    RegisterComponent,
+    TextComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
