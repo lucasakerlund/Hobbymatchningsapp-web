@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+  import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -14,7 +14,6 @@ import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TextComponent } from './components/text/text.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,14 +25,17 @@ import { TextComponent } from './components/text/text.component';
     RegisterComponent,
     TextComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgbModule,
+    NgbModule
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

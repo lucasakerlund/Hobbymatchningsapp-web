@@ -12,8 +12,8 @@
             <div class="description-container">
                 <label class="description-label" for="description">Beskrivning</label>
                 <form [formGroup]="form">
-                    <textarea class="description" id="description" rows="6" cols="50"
-                        maxlength="300" formControlName="description"></textarea>
+                    <textarea class="description" id="description" rows="6" cols="50" maxlength="300"
+                        formControlName="description"></textarea>
                 </form>
             </div>
         </div>
@@ -22,21 +22,34 @@
         <div class="hobby-container">
             <div class="hobby" *ngFor="let hobby of hobbiesToDisplay(), index as iter">
                 <label class="hobby-text">{{hobby.name}}</label>
-                <span *ngIf="hobbiesToDisplay().length-1 == iter" type="button" class="icon icon-add-circle" (click)="openHobbyModal(content)"></span>
+                <span *ngIf="hobbiesToDisplay().length-1 == iter" type="button" class="icon icon-add-circle"
+                    (click)="openHobbyModal(content)"></span>
             </div>
         </div>
 
     </div>
     <div class="third-row">
+        <div class="prefs-container">
+            <p class="info-title">Fyll i matchningspreferenser</p>
 
+            <div class="prefs-row1">
+                <label class="prefs-labels">Sökning utifrån region:</label>
+                <button class="prefs-buttons">^</button>
+            </div>
+
+            <div>
+                <label class="age-slider:">Åldersspan</label>
+                
+            </div>
+
+        </div>
     </div>
 
     <div class="fourth-row">
         <button (click)="optionsExpanded = !optionsExpanded" class="advOptionsBtn mb-3" id="advOptionsBtn">
             {{optionsExpanded ? 'Avancerade alternativ' : 'Dölj alternativ'}}
-            <span class="icon"
-            [class.icon-expand-less]="!optionsExpanded"
-            [class.icon-expand-more]="optionsExpanded"></span>
+            <span class="icon" [class.icon-expand-less]="!optionsExpanded"
+                [class.icon-expand-more]="optionsExpanded"></span>
         </button>
 
         <div class="w-100" #collapse="ngbCollapse" [ngbCollapse]="optionsExpanded">
@@ -44,14 +57,17 @@
 
                 <p class="info-title">Ändra dina uppgifiter</p>
 
-                <app-text class="mt-3" label="Förnamn:" identifier="firstname" placeholder="Förnamn" [control]="form.controls['first-name']"></app-text>
+                <app-text class="mt-3" label="Förnamn:" identifier="firstname" placeholder="Förnamn"
+                    [control]="form.controls['first-name']"></app-text>
 
-                <app-text class="mt-3" label="Efternamn:" identifier="surname" placeholder="Efternamn" [control]="form.controls['first-name']"></app-text>
+                <app-text class="mt-3" label="Efternamn:" identifier="surname" placeholder="Efternamn"
+                    [control]="form.controls['surname']"></app-text>
 
-                <app-text class="mt-3" label="Användarnamn:" identifier="username"
-                    placeholder="Användarnamn" [control]="form.controls['username']"></app-text>
+                <app-text class="mt-3" label="Användarnamn:" identifier="username" placeholder="Användarnamn"
+                    [control]="form.controls['username']"></app-text>
 
-                <app-text class="mt-3 mb-3" label="Email:" identifier="email" placeholder="Email" [control]="form.controls['email']"></app-text>
+                <app-text class="mt-3 mb-3" label="Email:" identifier="email" placeholder="Email"
+                    [control]="form.controls['email']"></app-text>
 
             </div>
         </div>
@@ -70,8 +86,10 @@
         <form [formGroup]="form">
             <div formArrayName="hobbies">
                 <div *ngFor="let hobby of allHobbies; index as iter" class="modal-hobby-item form-check">
-                    <label [for]="'modal-hobby-item' + iter" class="form-check-label modal-hobby-item-label">{{hobby.name}}</label>
-                    <input type="checkbox" [name]="'modal-hobby-item' + iter" [id]="'modal-hobby-item' + iter" class="form-check-input" [formControlName]="iter">
+                    <label [for]="'modal-hobby-item' + iter"
+                        class="form-check-label modal-hobby-item-label">{{hobby.name}}</label>
+                    <input type="checkbox" [name]="'modal-hobby-item' + iter" [id]="'modal-hobby-item' + iter"
+                        class="form-check-input" [formControlName]="iter">
                 </div>
             </div>
         </form>

@@ -79,7 +79,7 @@ export class ProfileComponent implements OnInit {
 	}
 
   saveEdit(): void {
-    
+    // Send updated info to backend when user hits "save" after editing profile information
   }
 
   cancelEdit(): void {
