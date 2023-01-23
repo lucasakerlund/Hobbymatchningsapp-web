@@ -114,6 +114,20 @@
 .third-row{
 
 }
+.region-container{
+
+}
+.region-text {
+    border: 1px solid orange;
+    border-radius: .3rem;
+    padding: .2rem .4rem;
+    color: #fff;
+    margin-right: .5rem;
+    text-align: center;
+}
+
+
+
 
 .fourth-row{
     width: 100%;
@@ -184,6 +198,9 @@
     .modal-hobby-item-label {
         color: #fff;
     }
+    .modal-region-item-label {
+        color: #fff;
+    }
 
     .close {
         color: #fff;
@@ -202,7 +219,7 @@
 .icon-add-circle{
     display: flex;
     align-items: center;
-    color: white;
+    color: rgb(13, 185, 240);
 }
 
 .icon-add-circle::before{
@@ -216,7 +233,16 @@
 .icon-expand-more::before{
     content: 'expand_more';
 }
-
+.icon-person-pin-circle {
+    display: flex;
+    align-items: center;
+    color: rgb(13, 185, 240);
+    font-size: 3rem;
+  }
+  .icon-person-pin-circle::before {
+    content: 'person_pin_circle';
+  }
+  
 @media screen and (max-width: 750px) {
     .profile {
         width: 100%;

@@ -4,7 +4,9 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Hobby } from '../models/hobby';
 import { HobbyController } from '../models/hobby-controller';
+import { Region } from '../models/region';
 import { User } from '../models/user';
+import { RegionController } from '../models/region-controller';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +16,8 @@ import { User } from '../models/user';
 export class ProfileComponent implements OnInit {
 
   optionsExpanded: boolean = true;
+
+  regionOptionsExpanded: boolean = true;
 
   isValuesEdited: boolean = false;
 
@@ -39,6 +43,28 @@ export class ProfileComponent implements OnInit {
     new Hobby(9, 'beating people'),
   ];
 
+  allRegions: Region[] = [
+    new Region(0, 'testRegion1'),
+    new Region(1, 'testRegion2'),
+    new Region(2, 'testRegion3'),
+    new Region(3, 'testRegion4'),
+    new Region(4, 'testRegion5'),
+    new Region(5, 'testRegion6'),
+    new Region(6, 'testRegion7'),
+    new Region(7, 'testRegion8'),
+    new Region(8, 'testRegion9'),
+    new Region(9, 'testRegion10'),
+    new Region(10, 'testRegion11'),
+    new Region(11, 'testRegion12'),
+    new Region(12, 'testRegion13'),
+    new Region(13, 'testRegion14'),
+    new Region(14, 'testRegion15'),
+    new Region(15, 'testRegion16'),
+    new Region(16, 'testRegion17'),
+    new Region(17, 'testRegion18'),
+    new Region(18, 'testRegion19'),
+    new Region(19, 'testRegion20')
+  ];
   @Input('user') user: User = new User;
 
   form!: FormGroup;
@@ -60,12 +86,20 @@ export class ProfileComponent implements OnInit {
       new Hobby(2, 'photoshopping'),
       new Hobby(3, 'facebook'),
     ];
+    this.user.regions = [
+      new Region(0, 'testRegion1')
+    ]
 
     this.form = new FormGroup({
       'description': new FormControl(this.user.description),
       'hobbies': new FormArray(this.allHobbies.map(hobby => {
         const control = new HobbyController(this.user.hobbies.map(userHobby => userHobby.id).includes(hobby.id));
         control.hobbyId = hobby.id;
+        return control;
+      })),
+      'regions': new FormArray(this.allRegions.map(region => {
+        const control = new RegionController(this.user.regions.map(userRegion => userRegion.id).includes(region.id));
+        control.regionId = region.id;
         return control;
       })),
       'first-name': new FormControl(this.user.firstName, Validators.required),
@@ -89,6 +123,10 @@ export class ProfileComponent implements OnInit {
     this.modalService.open(content, { centered: true, size: 'sm', windowClass: 'hobby-modal' });
   }
 
+  openRegionModal(content: any) {
+    this.modalService.open(content, { centered: true, size: 'sm', windowClass: 'region-modal' });
+  }
+
   saveEdit(): void {
     // Send updated info to backend when user hits "save" after editing profile information
   }
@@ -105,6 +143,16 @@ export class ProfileComponent implements OnInit {
     return this.allHobbies.filter(hobby => {
       for (let control of (this.form.controls['hobbies'] as FormArray).controls) {
         if (control.value && hobby.id == (control as HobbyController).hobbyId) {
+          return true;
+        }
+      }
+      return false;
+    })
+  }
+  regionsToDisplay(): Region[] {
+    return this.allRegions.filter(region => {
+      for (let control of (this.form.controls['regions'] as FormArray).controls) {
+        if (control.value && region.id == (control as RegionController).regionId) {
           return true;
         }
       }
