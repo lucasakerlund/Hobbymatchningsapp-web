@@ -1,3 +1,4 @@
+import { Options } from '@angular-slider/ngx-slider/options';
 import { Component, ElementRef, HostListener, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,6 +17,13 @@ export class ProfileComponent implements OnInit {
 
   isValuesEdited: boolean = false;
 
+  minValue: number = 50;
+  maxValue: number = 200;
+  options: Options = {
+    floor: 0,
+    ceil: 250
+  };
+
   allHobbies: Hobby[] = [
     new Hobby(0, 'gay porn'),
     new Hobby(1, 'league of legends'),
@@ -28,7 +36,7 @@ export class ProfileComponent implements OnInit {
     new Hobby(8, 'cooking'),
     new Hobby(9, 'beating people'),
   ];
-  
+
   @Input('user') user: User = new User;
 
   form!: FormGroup;
@@ -66,17 +74,17 @@ export class ProfileComponent implements OnInit {
     this.form.valueChanges.subscribe(value => {
       this.isValuesEdited =
         this.form.controls['description'].value == this.user.description &&
-        this.form.controls['first-name'].value == this.user.firstName &&
-        this.form.controls['surname'].value == this.user.surname &&
-        this.form.controls['username'].value == this.user.username &&
-        this.form.controls['email'].value == this.user.email ? false : true;
+          this.form.controls['first-name'].value == this.user.firstName &&
+          this.form.controls['surname'].value == this.user.surname &&
+          this.form.controls['username'].value == this.user.username &&
+          this.form.controls['email'].value == this.user.email ? false : true;
     });
 
   }
 
   openHobbyModal(content: any) {
-		this.modalService.open(content, { centered: true, size: 'sm', windowClass: 'hobby-modal' });
-	}
+    this.modalService.open(content, { centered: true, size: 'sm', windowClass: 'hobby-modal' });
+  }
 
   saveEdit(): void {
     // Send updated info to backend when user hits "save" after editing profile information
@@ -92,8 +100,8 @@ export class ProfileComponent implements OnInit {
 
   hobbiesToDisplay(): Hobby[] {
     return this.allHobbies.filter(hobby => {
-      for(let control of (this.form.controls['hobbies'] as FormArray).controls) {
-        if(control.value && hobby.id == (control as HobbyController).hobbyId){
+      for (let control of (this.form.controls['hobbies'] as FormArray).controls) {
+        if (control.value && hobby.id == (control as HobbyController).hobbyId) {
           return true;
         }
       }
