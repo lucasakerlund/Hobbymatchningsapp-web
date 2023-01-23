@@ -17,11 +17,12 @@ export class ProfileComponent implements OnInit {
 
   isValuesEdited: boolean = false;
 
-  minValue: number = 50;
-  maxValue: number = 200;
-  options: Options = {
-    floor: 0,
-    ceil: 250
+  defaultMinAgeValue: number = 18;
+  defaultMaxAgeValue: number = 100;
+
+  ageSliderOptions: Options = {
+    floor: 18,
+    ceil: 100
   };
 
   allHobbies: Hobby[] = [
@@ -45,6 +46,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     // These are for dev purpouses, should be initialized by values from backend based on logged-in user.
+    
     this.user.firstName = 'Johnny';
     this.user.surname = 'Orland';
     this.user.username = 'Big mighty Orlandoh';
