@@ -1,11 +1,21 @@
 :host {
-    background-image: url('/assets/profile-background.jpg');
-    background-repeat: no-repeat;
     background-color: #fff;
     display: flex;
     justify-content: center;
-    height: 100%;
     position: relative;
+    flex: 1;
+}
+
+.background {
+    background-image: url('/assets/profile-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .profile {
@@ -13,12 +23,14 @@
     display: flex;
     flex-direction: column;
     justify-content: top;
+    padding-bottom: 5rem;
     align-items: center;
     box-shadow: 3px 3px 20px 4px black;
     border-left: 3px solid orange;
     border-right: 3px solid orange;
     background-color: rgba(44, 44, 44, 0.900);
     height: 100%;
+    z-index: 1;
 }
 
 .first-row{
