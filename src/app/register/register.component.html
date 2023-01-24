@@ -53,8 +53,8 @@
 
         <label for="repeat-password" class="password-label mt-3">Upprepa lösenord</label>
         <input type="password"
-        [class.is-invalid]="!getControl('repeat-password').valid && getControl('repeat-password').touched"
-        [class.is-valid]="getControl('repeat-password').valid && getControl('repeat-password').touched"
+        [class.is-invalid]="getControl('repeat-password').value != getControl('password').value && getControl('repeat-password').touched"
+        [class.is-valid]="getControl('repeat-password').value == getControl('password').value && getControl('repeat-password').touched"
         name="repeat-password"
         id="repeat-password"
         class="form-control"
@@ -71,7 +71,9 @@
             id="birthdate"
             placeholder="yyyy-mm-dd"
             name="dp"
-            ngbDatepicker #d="ngbDatepicker">
+            ngbDatepicker #d="ngbDatepicker"
+            formControlName="birthdate"
+            [minDate]="{year: 1900, month: 1, day: 1}" [maxDate]="{year: 2022, month: 12, day: 31}" >
             <span class="icon icon-calendar" (click)="d.toggle()" type="button"></span>
           </div>
 

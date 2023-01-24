@@ -105,7 +105,7 @@ export class ProfileComponent implements OnInit {
       'first-name': new FormControl(this.user.firstName, Validators.required),
       'surname': new FormControl(this.user.surname, Validators.required),
       'username': new FormControl(this.user.username, Validators.required),
-      'email': new FormControl(this.user.email, [Validators.required, Validators.pattern('[a-z0-1]+@[a-z0-1].[a-z]+')]),
+      'email': new FormControl(this.user.email, [Validators.required, Validators.pattern('^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')]),
     });
 
     this.form.valueChanges.subscribe(value => {

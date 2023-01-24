@@ -7,9 +7,11 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 /* Importing Bootstrap SCSS file. */
 
-.hobby-modal .modal-content {
-    background-color: transparent;
-    border: none;
+.hobby-modal, .region-modal, .personal-region-modal {
+    .modal-content {
+        background-color: transparent;
+        border: none;
+    }
 }
 
 .icon {
