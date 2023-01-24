@@ -31,9 +31,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding: 1rem 4rem;
     padding-top: 2rem;
-
+    width: 15rem;
 }
 
 .avatar-container{
@@ -47,7 +46,7 @@
     overflow: hidden;
 }
 
-.gender{
+.gender, .region{
     color: #fff;
     font-size: 1.3rem;
 }
@@ -112,11 +111,29 @@
 }
 
 .third-row{
-
+    width: 50%;
+    max-height: 20rem;
+    border-radius: 10px;
+    margin-top: 2rem;   
 }
-.region-container{
 
+.content{
+    flex-direction: column;
 }
+
+.region-preferences{
+    align-items: center;
+    display: flex;
+}
+
+.age-preferences{
+    
+}
+
+.prefs-labels {
+    color: #fff;
+}
+
 .region-text {
     border: 1px solid orange;
     border-radius: .3rem;
@@ -125,9 +142,6 @@
     margin-right: .5rem;
     text-align: center;
 }
-
-
-
 
 .fourth-row{
     width: 100%;
@@ -158,6 +172,20 @@
     color: #fff;
     font-size: 1.5rem;
     text-align: center;
+}
+
+.region-label{
+    color: #fff;
+    margin-right: 1rem;
+    width: 10rem;
+}
+
+.personal-region-button{
+    color: #fff;
+    width: 11.72rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid orange;
 }
 
 .fifth-row {
@@ -235,7 +263,6 @@
 }
 .icon-person-pin-circle {
     display: flex;
-    align-items: center;
     color: rgb(13, 185, 240);
     font-size: 3rem;
   }

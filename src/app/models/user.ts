@@ -6,6 +6,7 @@ export class User {
     surname: string =''
     username: string='';
     email: string='';
+    personalRegion!: Region;
     gender: string='';
     description: string='';
     hobbies: Hobby[] = [];

@@ -21,9 +21,9 @@ export class ProfileComponent implements OnInit {
 
   isValuesEdited: boolean = false;
 
-  defaultMinAgeValue: number = 18;
-  
-  defaultMaxAgeValue: number = 100;
+  selectedAgeOne: number = 18;
+
+  selectedAgeTwo: number = 100;
 
   ageSliderOptions: Options = {
     floor: 18,
@@ -69,15 +69,18 @@ export class ProfileComponent implements OnInit {
 
   form!: FormGroup;
 
+  prefForm!: FormGroup;
+
   constructor(private modalService: NgbModal) { }
 
   ngOnInit(): void {
     // These are for dev purpouses, should be initialized by values from backend based on logged-in user.
-    
+
     this.user.firstName = 'Johnny';
     this.user.surname = 'Orland';
     this.user.username = 'Big mighty Orlandoh';
     this.user.email = 'johnnyboi@mail.com';
+    this.user.personalRegion = this.allRegions[0];
     this.user.gender = 'gigafurry';
     this.user.description = 'Hej! Jag heter Johnny och jag gillar Angular';
     this.user.hobbies = [
@@ -90,6 +93,8 @@ export class ProfileComponent implements OnInit {
       new Region(0, 'testRegion1')
     ]
 
+    // Lucas har dåligt cs-aim...
+
     this.form = new FormGroup({
       'description': new FormControl(this.user.description),
       'hobbies': new FormArray(this.allHobbies.map(hobby => {
@@ -97,15 +102,19 @@ export class ProfileComponent implements OnInit {
         control.hobbyId = hobby.id;
         return control;
       })),
-      'regions': new FormArray(this.allRegions.map(region => {
-        const control = new RegionController(this.user.regions.map(userRegion => userRegion.id).includes(region.id));
-        control.regionId = region.id;
-        return control;
-      })),
       'first-name': new FormControl(this.user.firstName, Validators.required),
       'surname': new FormControl(this.user.surname, Validators.required),
       'username': new FormControl(this.user.username, Validators.required),
-      'email': new FormControl(this.user.email, [Validators.required, Validators.pattern('^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')]),
+      'email': new FormControl(this.user.email, [Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$')]),
+      'personalRegion': new FormControl(this.user.personalRegion.id),
+    });
+
+    this.prefForm = new FormGroup({
+      'prefRegions': new FormArray(this.allRegions.map(region => {
+        const control = new RegionController(this.user.regions.map(prefRegion => prefRegion.id).includes(region.id));
+        control.regionId = region.id;
+        return control;
+      })),
     });
 
     this.form.valueChanges.subscribe(value => {
@@ -114,7 +123,8 @@ export class ProfileComponent implements OnInit {
           this.form.controls['first-name'].value == this.user.firstName &&
           this.form.controls['surname'].value == this.user.surname &&
           this.form.controls['username'].value == this.user.username &&
-          this.form.controls['email'].value == this.user.email ? false : true;
+          this.form.controls['email'].value == this.user.email &&
+          this.form.controls['personalRegion'].value == this.user.personalRegion.id ? false : true;
     });
 
   }
@@ -127,6 +137,10 @@ export class ProfileComponent implements OnInit {
     this.modalService.open(content, { centered: true, size: 'sm', windowClass: 'region-modal' });
   }
 
+  openPersonalRegionModal(content: any) {
+    this.modalService.open(content, { centered: true, size: 'sm', windowClass: 'personal-region-modal' });
+  }
+
   saveEdit(): void {
     // Send updated info to backend when user hits "save" after editing profile information
   }
@@ -137,6 +151,7 @@ export class ProfileComponent implements OnInit {
     this.form.controls['surname'].setValue(this.user.surname);
     this.form.controls['username'].setValue(this.user.username);
     this.form.controls['email'].setValue(this.user.email);
+    this.form.controls['personalRegion'].setValue(this.user.personalRegion.id);
   }
 
   hobbiesToDisplay(): Hobby[] {
@@ -149,15 +164,10 @@ export class ProfileComponent implements OnInit {
       return false;
     })
   }
-  regionsToDisplay(): Region[] {
-    return this.allRegions.filter(region => {
-      for (let control of (this.form.controls['regions'] as FormArray).controls) {
-        if (control.value && region.id == (control as RegionController).regionId) {
-          return true;
-        }
-      }
-      return false;
-    })
+
+  getPersonalRegionName(regionId: number) {
+    return this.allRegions.filter(region => region.id == regionId)[0].name;
   }
+
 
 }
