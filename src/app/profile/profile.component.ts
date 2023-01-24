@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   isValuesEdited: boolean = false;
 
   defaultMinAgeValue: number = 18;
+  
   defaultMaxAgeValue: number = 100;
 
   ageSliderOptions: Options = {
