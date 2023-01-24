@@ -31,16 +31,16 @@ export class ProfileComponent implements OnInit {
   };
 
   allHobbies: Hobby[] = [
-    new Hobby(0, 'gay porn'),
-    new Hobby(1, 'league of legends'),
-    new Hobby(2, 'photoshopping'),
-    new Hobby(3, 'facebook'),
-    new Hobby(4, 'eat dick'),
-    new Hobby(5, 'make bad css'),
-    new Hobby(6, 'gym'),
-    new Hobby(7, 'driving'),
-    new Hobby(8, 'cooking'),
-    new Hobby(9, 'beating people'),
+    new Hobby(0, 'Natur'),
+    new Hobby(1, 'League of Legends'),
+    new Hobby(2, 'Photoshopping'),
+    new Hobby(3, 'Facebook'),
+    new Hobby(4, 'Mat'),
+    new Hobby(5, 'CCS Codning'),
+    new Hobby(6, 'Gym'),
+    new Hobby(7, 'Bilar'),
+    new Hobby(8, 'Matlagning'),
+    new Hobby(9, 'Boxning'),
   ];
 
   allRegions: Region[] = [
@@ -79,12 +79,12 @@ export class ProfileComponent implements OnInit {
     this.user.username = 'Big mighty Orlandoh';
     this.user.email = 'johnnyboi@mail.com';
     this.user.gender = 'gigafurry';
-    this.user.description = 'Hej! Jag heter Johnny och jag gillar god salami :)';
+    this.user.description = 'Hej! Jag heter Johnny och jag gillar Angular';
     this.user.hobbies = [
-      new Hobby(0, 'gay porn'),
-      new Hobby(1, 'league of legends'),
-      new Hobby(2, 'photoshopping'),
-      new Hobby(3, 'facebook'),
+      new Hobby(0, 'Natur'),
+      new Hobby(1, 'League of Legends'),
+      new Hobby(2, 'Photoshopping'),
+      new Hobby(3, 'Facebook'),
     ];
     this.user.regions = [
       new Region(0, 'testRegion1')
