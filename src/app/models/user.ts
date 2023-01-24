@@ -1,4 +1,5 @@
 import { Hobby } from "./hobby";
+import { Region } from "./region";
 
 export class User {
     firstName: string ='';
@@ -8,4 +9,5 @@ export class User {
     gender: string='';
     description: string='';
     hobbies: Hobby[] = [];
+    regions: Region[] = [];
 }

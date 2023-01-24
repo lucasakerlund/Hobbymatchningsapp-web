@@ -23,20 +23,20 @@
             <div class="hobby" *ngFor="let hobby of hobbiesToDisplay(), index as iter">
                 <label class="hobby-text">{{hobby.name}}</label>
                 <span *ngIf="hobbiesToDisplay().length-1 == iter" type="button" class="icon icon-add-circle"
-                    (click)="openHobbyModal(content)"></span>
+                    (click)="openHobbyModal(hobbyContent)"></span>
             </div>
         </div>
 
     </div>
     <div class="third-row">
-        <div class="prefs-container">
+        <div class="region-container">
             <p class="info-title">Fyll i matchningspreferenser</p>
 
             <div class="prefs-row1">
                 <label class="prefs-labels">Sökning utifrån region:</label>
-                <button class="prefs-buttons">^</button>
+                    <span type="button" class="icon icon-person-pin-circle" (click)="openRegionModal(regionContent)"></span>
             </div>
-
+           
             <div>
                 <label class="age-slider:">Åldersspan</label>
                 <ngx-slider [(value)]="defaultMinAgeValue" [(highValue)]="defaultMaxAgeValue" [options]="ageSliderOptions"></ngx-slider>
@@ -81,7 +81,7 @@
 
 </div>
 
-<ng-template #content let-modal>
+<ng-template #hobbyContent let-modal>
     <div class="container modal-container">
         <form [formGroup]="form">
             <div formArrayName="hobbies">
@@ -89,6 +89,22 @@
                     <label [for]="'modal-hobby-item' + iter"
                         class="form-check-label modal-hobby-item-label">{{hobby.name}}</label>
                     <input type="checkbox" [name]="'modal-hobby-item' + iter" [id]="'modal-hobby-item' + iter"
+                        class="form-check-input" [formControlName]="iter">
+                </div>
+            </div>
+        </form>
+        <div type="button" class="close" (click)="modal.dismiss('Close')">Klar</div>
+    </div>
+</ng-template>
+
+<ng-template #regionContent let-modal>
+    <div class="container modal-container">
+        <form [formGroup]="form">
+            <div formArrayName="regions">
+                <div *ngFor="let region of allRegions; index as iter" class="modal-region-item form-check">
+                    <label [for]="'modal-region-item' + iter"
+                        class="form-check-label modal-region-item-label">{{region.name}}</label>
+                    <input type="checkbox" [name]="'modal-region-item' + iter" [id]="'modal-region-item' + iter"
                         class="form-check-input" [formControlName]="iter">
                 </div>
             </div>
