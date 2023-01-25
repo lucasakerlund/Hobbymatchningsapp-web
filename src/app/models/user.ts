@@ -1,4 +1,5 @@
 import { Hobby } from "./hobby";
+import { Gender, } from "./gender";
 import { Region } from "./region";
 
 export class User {
@@ -11,4 +12,5 @@ export class User {
     description: string='';
     hobbies: Hobby[] = [];
     regions: Region[] = [];
+    genderPreference!: Gender;
 }

@@ -29,6 +29,9 @@
                 <span *ngIf="hobbiesToDisplay().length-1 == iter" type="button" class="icon icon-add-circle"
                     (click)="openHobbyModal(hobbyContent)"></span>
             </div>
+
+            <span *ngIf="hobbiesToDisplay().length == 0" type="button" class="icon icon-add-circle"
+                (click)="openHobbyModal(hobbyContent)"></span>
         </div>
 
     </div>
@@ -36,6 +39,13 @@
         <div class="content">
 
             <p class="info-title">Fyll i matchningspreferenser</p>
+            <div class="gender-preference">
+                <label class="prefs-labels">Jag vill träffa: </label>
+                <label class="pref-gender-label"></label>
+                <span type="button" class="gender-preference-button"
+                    (click)="openGenderModal(genderContent)">{{prefForm.controls['prefGender'].value}}</span>
+            </div>
+
             <div class="region-preferences">
                 <label class="prefs-labels">Sökning utifrån region:</label>
                 <span type="button" class="icon icon-person-pin-circle" (click)="openRegionModal(regionContent)"></span>
@@ -132,6 +142,20 @@
                     class="form-check-label modal-region-item-label">{{region.name}}</label>
                 <input type="radio" name="personalRegion" [id]="'modal-region-item' + iter" [value]="region.id"
                     class="form-check-input" formControlName="personalRegion">
+            </div>
+        </form>
+        <div type="button" class="close" (click)="modal.dismiss('Close')">Klar</div>
+    </div>
+</ng-template>
+
+<ng-template #genderContent let-modal>
+    <div class="container modal-container">
+        <form [formGroup]="prefForm">
+            <div *ngFor="let gender of allGenders; index as iter" class="modal-gender-item form-check">
+                <label [for]="'modal-gender-item' + iter"
+                    class="form-check-label modal-region-item-label">{{gender.name}}</label>
+                <input type="radio" name="prefGender" [id]="'modal-gender-item' + iter" [value]="gender.name"
+                    class="form-check-input" formControlName="prefGender">
             </div>
         </form>
         <div type="button" class="close" (click)="modal.dismiss('Close')">Klar</div>

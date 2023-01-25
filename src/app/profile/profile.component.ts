@@ -7,6 +7,8 @@ import { HobbyController } from '../models/hobby-controller';
 import { Region } from '../models/region';
 import { User } from '../models/user';
 import { RegionController } from '../models/region-controller';
+import { GenderController } from '../models/gender-controller';
+import { Gender } from '../models/gender';
 
 @Component({
   selector: 'app-profile',
@@ -65,6 +67,14 @@ export class ProfileComponent implements OnInit {
     new Region(18, 'testRegion19'),
     new Region(19, 'testRegion20')
   ];
+
+  allGenders: Gender[] = [
+    new Gender('Män'),
+    new Gender('Kvinnor'),
+    new Gender('Icke-specifierade'),
+    new Gender('Samtliga')
+  ];
+
   @Input('user') user: User = new User;
 
   form!: FormGroup;
@@ -92,6 +102,7 @@ export class ProfileComponent implements OnInit {
     this.user.regions = [
       new Region(0, 'testRegion1')
     ]
+    this.user.genderPreference = this.allGenders[0];
 
     // Lucas har dåligt cs-aim...
 
@@ -115,6 +126,7 @@ export class ProfileComponent implements OnInit {
         control.regionId = region.id;
         return control;
       })),
+      'prefGender': new FormControl(this.user.genderPreference.name),
     });
 
     this.form.valueChanges.subscribe(value => {
@@ -139,6 +151,10 @@ export class ProfileComponent implements OnInit {
 
   openPersonalRegionModal(content: any) {
     this.modalService.open(content, { centered: true, size: 'sm', windowClass: 'personal-region-modal' });
+  }
+
+  openGenderModal(content: any) {
+    this.modalService.open(content, { centered: true, size: 'sm', windowClass: 'gender-modal' });
   }
 
   saveEdit(): void {
