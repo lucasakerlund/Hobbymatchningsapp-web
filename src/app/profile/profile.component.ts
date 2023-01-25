@@ -7,6 +7,7 @@ import { HobbyController } from '../models/hobby-controller';
 import { Region } from '../models/region';
 import { User } from '../models/user';
 import { RegionController } from '../models/region-controller';
+import { Preference } from '../models/preference';
 
 @Component({
   selector: 'app-profile',
@@ -100,7 +101,7 @@ export class ProfileComponent implements OnInit {
     this.user.regions = [
       new Region(0, 'testRegion1')
     ]
-    this.user.preference.gender = this.allGenders[0];
+    this.user.preference = new Preference(0, 0, this.allGenders[0]);
 
     // Lucas har dåligt cs-aim...
 

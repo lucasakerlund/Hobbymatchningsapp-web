@@ -29,11 +29,8 @@
     font-size: 2rem;
 }
 
-.username-label, .password-label, .email-label, .first-name-label, .surname-label, .gender-label, .birthdate-label {
-    color: #fff;
-}
-
 .register-button {
+    align-self: flex-end;
     background-color: rgba(66, 180, 13, 0.788);
     border: none;
     width: 14rem;
@@ -45,14 +42,28 @@
     }
 }
 
-.icon-calendar {
-    display: flex;
-    align-items: center;
-    margin-left: 1rem;
-}
+@media screen and (max-width: 700px) {
 
-.icon-calendar:before {
-    content: 'calendar_month';
-    color: #fff;
-    font-size: 2rem;
+    .form-content {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .user-registration-container {
+        flex-direction: column;
+
+    }
+
+    .user-credentials-container {
+        margin-right: 0;
+    }
+    
+    .user-information {
+        padding-left: 0;
+        border: 0;
+    }
+
+    .register-button {
+        align-self: center;
+    }
 }

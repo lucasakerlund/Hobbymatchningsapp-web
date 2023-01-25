@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
       'repeat-password': new FormControl('', [Validators.required]),
       'birthdate': new FormControl('', [Validators.required]),
       'gender': new FormControl('', Validators.required),
+      'region': new FormControl('', Validators.required),
     }, {validators: this.checkPasswords});
   }
 

@@ -15,6 +15,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TextComponent } from './components/text/text.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { UserViewComponent } from './user-view/user-view.component';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { DateComponent } from './components/date/date.component';
+import { DropdownComponent } from './components/dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,11 @@ import { UserViewComponent } from './user-view/user-view.component';
     FlowComponent,
     RegisterComponent,
     TextComponent,
-    UserViewComponent
+    UserViewComponent,
+    TextComponent,
+    CheckboxComponent,
+    DateComponent,
+    DropdownComponent
   ],
 
   imports: [

@@ -296,14 +296,16 @@
 .icon-expand-more::before{
     content: 'expand_more';
 }
+
 .icon-person-pin-circle {
     display: flex;
     color: rgb(13, 185, 240);
     font-size: 3rem;
-  }
-  .icon-person-pin-circle::before {
+}
+
+.icon-person-pin-circle::before {
     content: 'person_pin_circle';
-  }
+}
   
 @media screen and (max-width: 750px) {
     .profile {

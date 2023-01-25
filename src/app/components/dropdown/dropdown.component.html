@@ -1,18 +1,16 @@
 <div class="d-flex flex-wrap">
+    <label
+    class="label"
+    for="identifier">{{label}}</label>
     <div>
-        <label
-        class="label"
-        for="identifier">{{label}}</label>
-    </div>
-    <div>
-        <input
+        <select
         [ngClass]="{'invalid': (!control.valid && control.touched && !customInvalid) || customInvalid, 'valid': customValid}"
         class ="input"
-        type="text"
         [name]="identifier"
         [id]="identifier"
-        [placeholder]="placeholder || ''"
         [formControl]="getControl()">
+        <option class="option" *ngFor="let value of values | keyvalue" [value]="value">{{value.value}}</option>
+        </select>
         <div [hidden]="control.valid || !control.touched"
         [ngClass]="{'invalid-text': (!control.valid && control.touched && !customInvalid) || customInvalid, 'valid': customValid}"
         class="text"> {{getErrorMessage()}}</div>

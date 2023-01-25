@@ -1,0 +1,21 @@
+<div class="d-flex flex-wrap">
+    <label
+    class="label"
+    for="identifier">{{label}}</label>
+    <div>
+        <div class="input-group">
+            <input
+            [class.invalid]="!control.valid && control.touched"
+            class ="input"
+            type="text"
+            [name]="identifier"
+            [id]="identifier"
+            [placeholder]="placeholder || ''"
+            [formControl]="getControl()"
+            ngbDatepicker #d="ngbDatepicker"
+            [minDate]="{year: 1900, month: 1, day: 1}" [maxDate]="{year: 2027, month: 12, day: 31}">
+            <span class="icon icon-calendar position-absolute end-0" (click)="d.toggle()" type="button"></span>
+        </div>
+        <div [hidden]="control.valid || !control.touched" [class.invalid-text]="!control.valid && control.touched" class="text"> {{getErrorMessage()}}</div>
+    </div>
+</div>

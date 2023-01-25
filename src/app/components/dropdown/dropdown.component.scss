@@ -9,9 +9,16 @@
     border: none;
     border-bottom: 2px solid orange;
     color: white;
+    min-width: 11.5625rem;
     &:focus {
         outline: none;
     }
+}
+
+.option {
+    background-color: rgb(41, 41, 41);
+    border: none;
+    color: #fff;
 }
 
 .invalid {

@@ -1,21 +1,24 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
 import { FormValidatorService } from 'src/app/services/form-validator.service';
 
 @Component({
-  selector: 'app-text',
-  templateUrl: './text.component.html',
-  styleUrls: ['./text.component.scss']
+  selector: 'app-date',
+  templateUrl: './date.component.html',
+  styleUrls: ['./date.component.scss']
 })
-export class TextComponent implements OnInit {
+export class DateComponent {
 
   @Input() control!: AbstractControl;
   @Input() label!: string;
   @Input() identifier!: string;
   @Input() placeholder!: string;
+  @Input() minDate!: string;
+  @Input() maxDate!: string;
+
   @Input() errorMessages!: {[key: string]: string};
-  @Input() customValid: boolean = false;
-  @Input() customInvalid: boolean = false;
+  @Input() valid!: boolean | undefined;
+  @Input() invalid!: boolean | undefined;
 
   constructor(private formValidator: FormValidatorService) { }
 
