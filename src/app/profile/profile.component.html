@@ -1,6 +1,4 @@
-<div class="background">
-    
-</div>
+<div class="background"></div>
 <div class="profile">
 
     <div class="first-row">
@@ -153,8 +151,8 @@
         <form [formGroup]="prefForm">
             <div *ngFor="let gender of allGenders; index as iter" class="modal-gender-item form-check">
                 <label [for]="'modal-gender-item' + iter"
-                    class="form-check-label modal-region-item-label">{{gender.name}}</label>
-                <input type="radio" name="prefGender" [id]="'modal-gender-item' + iter" [value]="gender.name"
+                    class="form-check-label modal-region-item-label">{{gender}}</label>
+                <input type="radio" name="prefGender" [id]="'modal-gender-item' + iter" [value]="gender"
                     class="form-check-input" formControlName="prefGender">
             </div>
         </form>

@@ -1,0 +1,177 @@
+:host {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    flex: 1;
+}
+
+.background {
+    background-image: url('/assets/back-pic.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.profile {
+    width: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    padding-bottom: 5rem;
+    align-items: center;
+    box-shadow: 3px 3px 20px 4px black;
+    border-left: 3px solid rgb(12, 199, 12);
+    border-right: 3px solid rgb(12, 199, 12);
+    background-color: rgba(44, 44, 44, 0.900);
+    height: 100%;
+    z-index: 1;
+}
+
+.first-row{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.avatar-gender-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 2rem;
+    width: 15rem;
+}
+
+.avatar-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid rgb(12, 199, 12);
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+    overflow: hidden;
+}
+
+.gender, .region{
+    color: #fff;
+    font-size: 1.3rem;
+}
+.name-description-container{
+    padding-right: 4rem;
+}
+.name{
+    color: #fff;
+    font-size: 2rem;
+   
+}
+.description-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.description-label{
+    color: #fff;
+}
+.description{
+    resize: none;
+    background-color: rgba(44, 44, 44, 0.700);
+    color: #fff;
+    border-width: 3px;
+    border-radius: 10px;
+    border-color: rgb(12, 199, 12);
+}
+
+.description:focus{
+    outline: none;    
+}
+
+.second-row{
+    width: 90%;
+    max-height: 20rem;
+    background-color: rgba(44, 44, 44, 0.700);
+    border: 3px solid rgb(12, 199, 12);
+    border-radius: 10px;
+    margin-top: 2rem;    
+}
+
+.hobby-container{
+    display: flex;
+    flex-wrap: wrap;
+    padding: .5rem;
+    max-height: 250px;
+    overflow: auto;
+}
+
+.hobby {
+    display: flex;
+    margin: .4rem 0 .2rem .4rem;
+}
+
+.hobby-text{
+    border: 1px solid rgb(12, 199, 12);
+    border-radius: .3rem;
+    padding: .2rem .4rem;
+    color: #fff;
+    margin-right: .5rem;
+    text-align: center;
+}
+
+.third-row{
+   
+}
+
+.fourth-row{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-title {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;   
+    margin-top: .5rem;
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.contact-info-container{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(37, 37, 37, 0.801);
+    padding: 0 1rem;
+    align-items: flex-start;
+
+}
+
+.info-container{
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+}
+
+.info-label{
+    color: #fff;
+    width: 10rem;
+}
+
+.info{
+    margin-left: 1rem;
+    color:#fff;
+}
+
+@media screen and (max-width: 750px) {
+    .profile {
+        width: 100%;
+        border: none;
+    }
+}

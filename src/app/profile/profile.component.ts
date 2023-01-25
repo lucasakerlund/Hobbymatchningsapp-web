@@ -7,8 +7,6 @@ import { HobbyController } from '../models/hobby-controller';
 import { Region } from '../models/region';
 import { User } from '../models/user';
 import { RegionController } from '../models/region-controller';
-import { GenderController } from '../models/gender-controller';
-import { Gender } from '../models/gender';
 
 @Component({
   selector: 'app-profile',
@@ -68,11 +66,11 @@ export class ProfileComponent implements OnInit {
     new Region(19, 'testRegion20')
   ];
 
-  allGenders: Gender[] = [
-    new Gender('Män'),
-    new Gender('Kvinnor'),
-    new Gender('Icke-specifierade'),
-    new Gender('Samtliga')
+  allGenders: string[] = [
+    'Män',
+    'Kvinnor',
+    'Icke-specifierade',
+    'Samtliga'
   ];
 
   @Input('user') user: User = new User;
@@ -102,7 +100,7 @@ export class ProfileComponent implements OnInit {
     this.user.regions = [
       new Region(0, 'testRegion1')
     ]
-    this.user.genderPreference = this.allGenders[0];
+    this.user.preference.gender = this.allGenders[0];
 
     // Lucas har dåligt cs-aim...
 
@@ -126,7 +124,7 @@ export class ProfileComponent implements OnInit {
         control.regionId = region.id;
         return control;
       })),
-      'prefGender': new FormControl(this.user.genderPreference.name),
+      'prefGender': new FormControl(this.user.preference.gender),
     });
 
     this.form.valueChanges.subscribe(value => {

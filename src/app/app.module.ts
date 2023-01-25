@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TextComponent } from './components/text/text.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { UserViewComponent } from './user-view/user-view.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
     ContactsComponent,
     FlowComponent,
     RegisterComponent,
-    TextComponent
+    TextComponent,
+    UserViewComponent
   ],
 
   imports: [
