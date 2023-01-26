@@ -1,1 +1,50 @@
-<p>contacts works!</p>
+
+
+<div class="contacts">
+    
+    
+    <div class="first-row">
+            <h2 class="friend-request-title">Friend Request:</h2>
+        <div *ngFor="let contact of getFriendRequests()" class="request-box">
+            <div class="friend-request">{{contact.firstName + ' ' + contact.surname}}</div>
+            <div class="button-container">
+            
+                <span type="button" class="acceptRequestButton icon icon-done"></span>
+            
+            
+                <span type="button" class="declineRequestButton icon icon-close"></span>
+            
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="second-row">
+        <h2 class="friends-title">Friends:</h2>
+        <div class="friends-box">
+            <div class="friends">hej</div>
+                <span type="button" class="expand-contact-Information icon icon-expand-more">
+                    <span></span>
+                </span>
+
+        </div>
+    </div>
+    <div class="third-row">
+        <button (click)="optionsExpanded = !optionsExpanded" class="advOptionsBtn mb-3" id="advOptionsBtn">
+            {{optionsExpanded ? 'Avancerade alternativ' : 'Dölj alternativ'}}
+            <span class="icon" [class.icon-expand-less]="!optionsExpanded"
+                [class.icon-expand-more]="optionsExpanded"></span>
+        </button>
+
+        <div class="w-100" #collapse="ngbCollapse" [ngbCollapse]="optionsExpanded">
+            <div class="adv-options-container">
+
+                <p class="info-title">Hihi Blocked :33333</p>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
