@@ -13,6 +13,9 @@ export class UserViewComponent {
 
   @Input('user') user: User = new User;
 
+  // When a user is selected, we must also assign true or false to this boolean to tell that to the page - friends display more information
+  isFriend!: boolean;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -44,7 +47,24 @@ export class UserViewComponent {
     this.user.discord = 'someDiscordLink#2513';
     this.user.snapchat = 'snapchatname29881352';
 
+    this.isFriend = true;
+
     // Lucas har dåligt cs-aim...
   }
+
+  addFriend(): void{
+    console.log('addFriend() called! :)');
+    // Call backend and change friendlist status, should now be friends
+  }
+
+  blockUser(): void{
+    console.log('blockUser() called! :(');
+    // Call backend and change friendlist status, should now be blocked
+  }
+
+  removeFriend(): void{
+    console.log('removeFriend() called! :/')
+  }
+
 
 }

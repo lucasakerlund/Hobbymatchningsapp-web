@@ -33,21 +33,21 @@
     z-index: 1;
 }
 
-.first-row{
+.first-row {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.avatar-gender-container {
+.avatar-gender-buttons-container {
     display: flex;
     align-items: center;
     flex-direction: column;
-    padding-top: 2rem;
+    padding-top: 1rem;
     width: 15rem;
 }
 
-.avatar-container{
+.avatar-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,27 +58,94 @@
     overflow: hidden;
 }
 
-.gender, .region{
+.gender {
     color: #fff;
     font-size: 1.3rem;
 }
-.name-description-container{
+
+.region {
+    color: #fff;
+    font-size: 1.3rem;
+}
+
+.add-block-div {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.remove-block-div {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.add-button {
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(37, 37, 37, 0.801);
+    color: rgb(0, 183, 255);
+    border: 2px solid rgb(0, 183, 255);
+}
+
+.add-button:hover {
+    color: rgb(134, 211, 255);
+    border: 2px solid rgb(134, 211, 255);
+}
+
+.block-button {
+    margin-left: 0.5rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(37, 37, 37, 0.801);
+    color: rgb(255, 0, 0);
+    border: 2px solid rgb(255, 0, 0);
+
+    &:hover {
+        color: rgb(192, 59, 59);
+        border: 2px solid rgb(192, 59, 59);
+    }
+}
+
+.remove-button {
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(37, 37, 37, 0.801);
+    color: rgb(0, 183, 255);
+    border: 2px solid rgb(0, 183, 255);
+
+    &:hover {
+        color: rgb(134, 211, 255);
+        border: 2px solid rgb(134, 211, 255);
+    }
+}
+
+.name-description-container {
     padding-right: 4rem;
 }
-.name{
+
+.name {
     color: #fff;
     font-size: 2rem;
-   
+
 }
-.description-container{
+
+.description-container {
     display: flex;
     flex-direction: column;
 }
 
-.description-label{
+.description-label {
     color: #fff;
 }
-.description{
+
+.description {
     resize: none;
     background-color: rgba(44, 44, 44, 0.700);
     color: #fff;
@@ -87,20 +154,20 @@
     border-color: rgb(12, 199, 12);
 }
 
-.description:focus{
-    outline: none;    
+.description:focus {
+    outline: none;
 }
 
-.second-row{
+.second-row {
     width: 90%;
     max-height: 20rem;
     background-color: rgba(44, 44, 44, 0.700);
     border: 3px solid rgb(12, 199, 12);
     border-radius: 10px;
-    margin-top: 2rem;    
+    margin-top: 2rem;
 }
 
-.hobby-container{
+.hobby-container {
     display: flex;
     flex-wrap: wrap;
     padding: .5rem;
@@ -113,7 +180,7 @@
     margin: .4rem 0 .2rem .4rem;
 }
 
-.hobby-text{
+.hobby-text {
     border: 1px solid rgb(12, 199, 12);
     border-radius: .3rem;
     padding: .2rem .4rem;
@@ -122,11 +189,9 @@
     text-align: center;
 }
 
-.third-row{
-   
-}
+.third-row {}
 
-.fourth-row{
+.fourth-row {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -136,14 +201,14 @@
 }
 
 .info-title {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;   
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-top: .5rem;
     color: #fff;
     font-size: 1.5rem;
     text-align: center;
 }
 
-.contact-info-container{
+.contact-info-container {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -153,20 +218,48 @@
 
 }
 
-.info-container{
+.info-container {
     display: flex;
     flex-direction: row;
     padding: 1rem;
 }
 
-.info-label{
+.info-label {
     color: #fff;
     width: 10rem;
 }
 
-.info{
+.info {
     margin-left: 1rem;
-    color:#fff;
+    color: #fff;
+}
+
+.icon-add {
+    display: flex;
+    align-items: center;
+
+    &::before {
+        content: 'add';
+    }
+}
+
+.icon-block {
+    font-size: medium;
+    display: flex;
+    align-items: center;
+
+    &::before {
+        content: 'block';
+    }
+}
+
+.icon-remove {
+    display: flex;
+    align-items: center;
+
+    &::before {
+        content: 'remove';
+    }
 }
 
 @media screen and (max-width: 750px) {
