@@ -8,7 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { UserViewComponent } from './user-view/user-view.component';
 
 const routes: Routes = [
-  {path: '', component: UserViewComponent},
+  {path: 'user', component: UserViewComponent},
   {path: 'flode', component: FlowComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'contacts', component: ContactsComponent},
