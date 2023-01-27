@@ -4,7 +4,7 @@
     <div class="first-row">
         <h2 class="friend-request-title">Friend Request:</h2>
         <div *ngFor="let contact of getFriendRequests()" class="request-box">
-            <div class="friend-request">{{contact.contact.firstName + ' ' + contact.contact.surname}}</div>
+            <div type="button" class="friend-request">{{contact.contact.firstName + ' ' + contact.contact.surname}}</div>
             <div class="button-container">
 
                 <span type="button" class="acceptRequestButton icon icon-done"></span>
@@ -21,13 +21,13 @@
         <h2 class="friends-title">Friends:</h2>
         <div *ngFor="let contact of getFriends()" class="friends-box">
             <div class="friends-box-header">
-                <div class="friends">{{contact.contact.firstName + ' ' + contact.contact.surname}}</div>
+                <div type="button" class="friends">{{contact.contact.firstName + ' ' + contact.contact.surname}}</div>
                 
                 <span type="button" (click)="contact.collapsed=!contact.collapsed" class="icon" [class.icon-expand-less]="!contact.collapsed"
                 [class.icon-expand-more]="contact.collapsed"></span>
             </div>
             <div class="w-100" #contactInfo="ngbCollapse" [ngbCollapse]="contact.collapsed">
-                <div>123</div>
+                <div>{{'Discord: ' + contact.contact.contactInformation.discord + ' Snapchat: ' + contact.contact.contactInformation.snapchat + ' Instagram: ' + contact.contact.contactInformation.instagram + ' Facebook: ' + contact.contact.contactInformation.facebook + ' Email: ' + contact.contact.contactInformation.email + ' Phone: ' + contact.contact.contactInformation.phone}}</div>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
         <div class="w-100" #collapse="ngbCollapse" [ngbCollapse]="optionsExpanded">
             <div *ngFor="let contact of getBlocked()" class="blocked-users-container">
 
-                <div class="blocked">{{contact.contact.firstName + ' ' + contact.contact.surname}}</div>
+                <div type="button" class="blocked">{{contact.contact.firstName + ' ' + contact.contact.surname}}</div>
                 <span type="button" class="unblock-button">Unblock</span>
                 
 

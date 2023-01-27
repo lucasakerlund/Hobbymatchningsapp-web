@@ -47,7 +47,7 @@ export class UserViewComponent {
     this.user.discord = 'someDiscordLink#2513';
     this.user.snapchat = 'snapchatname29881352';
 
-    this.isFriend = true;
+    this.isFriend = false;
 
     // Lucas har dåligt cs-aim...
   }
