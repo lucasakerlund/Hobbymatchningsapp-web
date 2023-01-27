@@ -27,21 +27,23 @@
                 [class.icon-expand-more]="contact.collapsed"></span>
             </div>
             <div class="w-100" #contactInfo="ngbCollapse" [ngbCollapse]="contact.collapsed">
-                <div></div>
+                <div>123</div>
             </div>
         </div>
     </div>
     <div class="third-row">
         <button (click)="optionsExpanded = !optionsExpanded" class="advOptionsBtn mb-3" id="advOptionsBtn">
-            {{optionsExpanded ? 'Avancerade alternativ' : 'Dölj alternativ'}}
+            {{optionsExpanded ? 'Blockerade Användare' : 'Dölj Blockerade'}}
             <span class="icon" [class.icon-expand-less]="!optionsExpanded"
                 [class.icon-expand-more]="optionsExpanded"></span>
         </button>
 
         <div class="w-100" #collapse="ngbCollapse" [ngbCollapse]="optionsExpanded">
-            <div class="adv-options-container">
+            <div *ngFor="let contact of getBlocked()" class="blocked-users-container">
 
-                <p class="info-title">Hihi Blocked :33333</p>
+                <div class="blocked">{{contact.contact.firstName + ' ' + contact.contact.surname}}</div>
+                <span type="button" class="unblock-button">Unblock</span>
+                
 
             </div>
         </div>

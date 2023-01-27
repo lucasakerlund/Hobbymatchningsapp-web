@@ -38,7 +38,7 @@
     max-height: 250px;
     overflow: auto;
     background-color: rgba(253, 250, 250, 0.7);
-    border: 3px solid orange;
+    border: 3px solid rgb(217, 142, 4);
     border-radius: 10px;
     margin-bottom: 1rem;
 }
@@ -74,7 +74,7 @@
     max-height: 250px;
     overflow: auto;
     background-color: rgba(253, 250, 250, 0.7);
-    border: 3px solid orange;
+    border: 3px solid rgb(148, 166, 83);
     border-radius: 10px;
     margin-bottom: 1rem;
 }
@@ -88,7 +88,7 @@
 
 
 .third-row{
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
@@ -104,12 +104,29 @@
     color: white;
 }
 
-.adv-options-container{
+.blocked-users-container{
+   
     display: flex;
-    flex-direction: column;
-    background-color: rgba(37, 37, 37, 0.801);
-    padding: 0 1rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: .5rem;
+    max-height: 250px;
+    overflow: auto;
+    background-color: rgba(253, 250, 250, 0.7);
+    border: 3px solid rgb(182, 49, 32);
+    border-radius: 10px;
+    margin-bottom: 1rem;
 }
+.blocked{
+    display: flex;
+    margin: .3rem 0 .2rem .4rem;
+}
+.unblock-button{
+    border: 2px solid rgb(79, 115, 2);
+    border-radius: 5px;
+    padding: 2px;
+}
+
 
 .info-title {
     margin-top: .5rem;

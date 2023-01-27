@@ -118,6 +118,78 @@ export class ContactsComponent implements OnInit {
           phone: '5'
         }
       )
+    },
+    {
+      collapsed: true,
+      contact: new Contact(
+        '6',
+        'BLOCKED',
+        'Julius',
+        'Thomsen',
+        'userName',
+        {
+          discord: '0',
+          snapchat: '1',
+          instagram: '2',
+          facebook: '3',
+          email: '4',
+          phone: '5'
+        }
+      )
+    },
+    {
+      collapsed: true,
+      contact: new Contact(
+        '7',
+        'BLOCKED',
+        'Henning',
+        'Oksa',
+        'userName',
+        {
+          discord: '0',
+          snapchat: '1',
+          instagram: '2',
+          facebook: '3',
+          email: '4',
+          phone: '5'
+        }
+      )
+    },
+    {
+      collapsed: true,
+      contact: new Contact(
+        '8',
+        'BLOCKED',
+        'Lucas',
+        'Åkerlund',
+        'userName',
+        {
+          discord: '0',
+          snapchat: '1',
+          instagram: '2',
+          facebook: '3',
+          email: '4',
+          phone: '5'
+        }
+      )
+    },
+    {
+      collapsed: true,
+      contact: new Contact(
+        '8',
+        'BLOCKED',
+        'Niklas',
+        'Gottfridsson Jeng',
+        'userName',
+        {
+          discord: '0',
+          snapchat: '1',
+          instagram: '2',
+          facebook: '3',
+          email: '4',
+          phone: '5'
+        }
+      )
     }
 ];
   
@@ -136,4 +208,7 @@ export class ContactsComponent implements OnInit {
     return this.AllContacts.filter(contact => contact.contact.status==='FRIEND');
   }
 
+  getBlocked(): {collapsed: boolean, contact: Contact}[]{
+    return this.AllContacts.filter(contact => contact.contact.status==='BLOCKED');
+  }
 }
