@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { LoginService } from '../services/login.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,18 +11,23 @@ export class LoginComponent implements OnInit {
 
   form!: FormGroup;
 
-  constructor(private loginService: LoginService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      'username': new FormControl(),
-      'password': new FormControl()
+      'username': new FormControl('', Validators.required),
+      'password': new FormControl('', Validators.required)
     });
   }
 
   login(): void {
-    this.loginService.login().subscribe(data => {
-      console.log('inloggad');
+    this.form.markAllAsTouched;
+    if(!this.form.valid){
+      return;
+    }
+    this.authService.login(this.form.controls['username'].value, this.form.controls['password'].value).subscribe(data => {
+      console.log('token ' + data);
+      sessionStorage.setItem('token', data);
     });
   }
 

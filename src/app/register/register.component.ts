@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { repeat } from 'rxjs';
+import { first, repeat } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ export class RegisterComponent implements OnInit {
 
   form!: FormGroup;
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -28,19 +29,21 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
-    this.validateForm();
+    this.form.markAllAsTouched();
+    if(!this.form.valid) {
+      return;
+    }
+    const {['first-name']: firstName, surname, email, username, password, birthdate, gender, region } = this.form.getRawValue();
+    console.log(this.form.getRawValue());
+    this.authService.register(username, password, email, firstName, surname, gender, birthdate).subscribe(data => {
+      sessionStorage.setItem('token', data);
+    });
   }
 
   checkPasswords: ValidatorFn = (group: AbstractControl):  ValidationErrors | null => { 
     let pass = group.get('password')?.value;
     let confirmPass = group.get('repeat-password')?.value
     return pass === confirmPass ? null : { notSame: true }
-  }
-
-  validateForm(): boolean {
-    this.form.markAllAsTouched();
-    console.log(this.form.valid);
-    return this.form.valid;
   }
 
   getControl(controlName: string): FormControl {
