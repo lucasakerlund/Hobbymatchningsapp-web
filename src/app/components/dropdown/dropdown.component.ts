@@ -21,7 +21,6 @@ export class DropdownComponent {
   constructor(private formValidator: FormValidatorService) { }
 
   ngOnInit(): void {
-    console.log(this.values);
   }
 
   getControl(): FormControl {

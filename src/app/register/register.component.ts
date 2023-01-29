@@ -35,8 +35,15 @@ export class RegisterComponent implements OnInit {
     }
     const {['first-name']: firstName, surname, email, username, password, birthdate, gender, region } = this.form.getRawValue();
     console.log(this.form.getRawValue());
-    this.authService.register(username, password, email, firstName, surname, gender, birthdate).subscribe(data => {
-      sessionStorage.setItem('token', data);
+    this.authService.register(
+      username,
+      password,
+      email,
+      firstName,
+      surname,
+      gender,
+      birthdate.year + '-' + birthdate.month + '-' + birthdate.day).subscribe(data => {
+        sessionStorage.setItem('token', data);
     });
   }
 

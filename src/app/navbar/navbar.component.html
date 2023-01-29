@@ -17,9 +17,9 @@
                     <a class="nav-link active" aria-current="page" routerLink="contacts">Kontaktlista</a>
                 </li>
             </ul>
-            <button type="button" class="btn btn-success" routerLink="login">Login</button>
-            <button type="button" class="btn btn-warning" routerLink="register">Register</button>
-            <button type="button" class="btn btn-danger">Logut</button>
+            <button *ngIf="!isLoggedIn()" type="button" class="btn btn-success" routerLink="login">Logga in</button>
+            <button *ngIf="!isLoggedIn()"type="button" class="btn btn-warning" routerLink="register">Registrera</button>
+            <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()">Logga ut</button>
         </div>
     </div>
 </nav>

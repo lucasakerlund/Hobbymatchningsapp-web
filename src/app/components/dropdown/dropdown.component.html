@@ -9,7 +9,7 @@
         [name]="identifier"
         [id]="identifier"
         [formControl]="getControl()">
-        <option class="option" *ngFor="let value of values | keyvalue" [value]="value">{{value.value}}</option>
+        <option class="option" *ngFor="let value of values | keyvalue" [value]="value.key">{{value.value}}</option>
         </select>
         <div [hidden]="control.valid || !control.touched"
         [ngClass]="{'invalid-text': (!control.valid && control.touched && !customInvalid) || customInvalid, 'valid': customValid}"

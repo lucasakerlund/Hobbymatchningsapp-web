@@ -18,6 +18,7 @@ import { UserViewComponent } from './user-view/user-view.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { DateComponent } from './components/date/date.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
+import { ToastContainerComponent } from './toast-container/toast-container.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
     TextComponent,
     CheckboxComponent,
     DateComponent,
-    DropdownComponent
+    DropdownComponent,
+    ToastContainerComponent
   ],
 
   imports: [
