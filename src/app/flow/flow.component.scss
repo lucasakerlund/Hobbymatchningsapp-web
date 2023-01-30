@@ -1,0 +1,106 @@
+:host {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    flex: 1;
+}
+
+.background {
+    background-image: url('/assets/flow-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.profile {
+    width: 1200px;
+    display: flex;
+    justify-content: space-around;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    padding: 2rem .5rem 5rem .5rem;
+    gap: 1rem;
+    align-items: center;
+    box-shadow: 3px 3px 20px 4px black;
+    border-left: 3px solid orange;
+    border-right: 3px solid orange;
+    background-color: rgba(44, 44, 44, 0.900);
+    height: 100%;
+    z-index: 1;
+}
+
+.profile-card-container {
+    width: 20rem;
+    height: 22rem;
+    background-color: rgb(107, 107, 107);
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+}
+
+.first-row {
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem 0 0 1rem;
+    gap: .5rem;
+}
+
+.avatar-gender-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.avatar-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid orange;
+    border-radius: 1rem;
+    height: 120px;
+    width: 120px;
+    overflow: hidden;
+}
+
+.gender{
+    color: #fff;
+    font-size: 1.3rem;
+}
+
+.name-hobby-container {
+
+}
+
+.name {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.hobby-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.hobby {
+    width: 5rem;
+    color: #fff;
+}
+
+.description {
+    height: 10rem;
+    padding: .5rem;
+    color: #fff;
+    overflow: auto;
+}
+
+@media screen and (max-width: 1200px) {
+    .profile {
+        width: 100%;
+        border: none;
+    }
+}

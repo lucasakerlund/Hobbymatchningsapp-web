@@ -26,7 +26,9 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authService.login(this.form.controls['username'].value, this.form.controls['password'].value).subscribe(data => {
-      console.log('token ' + data);
+      if(typeof data != 'string') {
+        return
+      }
       sessionStorage.setItem('token', data);
     });
   }

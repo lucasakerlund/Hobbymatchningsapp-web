@@ -12,8 +12,8 @@ export class AuthService {
 
   constructor(private http: HttpClient, private toastService: ToastService) { }
 
-  login(username: string, password: string): Observable<string> {
-    return this.http.post<string>('http://localhost:9090/api/v1/auth/authUser', {userName: username, userPassword: password}, {headers: this.headers, observe: 'response', responseType: 'text' as 'json'})
+  login(username: string, password: string): Observable<any> {
+    return this.http.post<any>('http://localhost:9090/api/v1/auth/authUser', {userName: username, userPassword: password}, {headers: this.headers, observe: 'response', responseType: 'text' as 'json'})
     .pipe(map(res => res.body || ''), catchError(error => this.handleError(error, 'Något fel inträffade vid inloggning.')));
   }
   
