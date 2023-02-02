@@ -11,7 +11,7 @@ import { User } from '../models/user';
 })
 export class UserViewComponent {
 
-  @Input('user') user: User = new User;
+  user!: User;
 
   // When a user is selected, we must also assign true or false to this boolean to tell that to the page - friends display more information
   isFriend!: boolean;

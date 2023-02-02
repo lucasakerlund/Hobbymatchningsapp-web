@@ -18,7 +18,7 @@ export class AuthService {
   }
   
   register(userName: string, userPassword: string, userEmail: string, userFirstname: string, userLastName: string, gender: string, birthDate: string): Observable<string> {
-    return this.http.post<string>('http://localhost:9090/api/v1/auth/register', {userName, userPassword, userEmail, userFirstname, userLastName, contactInformation: 'test', roles: 'USER', gender, birthDate}, {headers: this.headers, observe: 'response', responseType: 'text' as 'json'})
+    return this.http.post<string>('http://localhost:9090/api/v1/auth/register', {userName, userPassword, userEmail, userFirstname, userLastName, gender, birthDate}, {headers: this.headers, observe: 'response', responseType: 'text' as 'json'})
     .pipe(map(res => res.body || ''), catchError(error => this.handleError(error, 'Något fel inträffade vid registrering.')));
   }
 

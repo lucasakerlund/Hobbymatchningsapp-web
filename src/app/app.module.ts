@@ -9,7 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { FlowComponent } from './flow/flow.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TextComponent } from './components/text/text.component';
@@ -19,6 +19,7 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { DateComponent } from './components/date/date.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { ToastContainerComponent } from './toast-container/toast-container.component';
+import { Httpinterceptor } from './services/http.interceptor';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,13 @@ import { ToastContainerComponent } from './toast-container/toast-container.compo
     NgxSliderModule
   ],
 
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Httpinterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 

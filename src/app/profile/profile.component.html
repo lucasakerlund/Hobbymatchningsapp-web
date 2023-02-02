@@ -6,7 +6,7 @@
             <div class="avatar-container">
                 <img id="avatar" src="/assets/902671383996268564.webp" alt="">
             </div>
-            <div class="gender">Kön: Furry</div>
+            <div class="gender">Kön: {{user.gender}}</div>
             <div class="region">Region: {{user.personalRegion.name}}</div>
         </div>
         <div class="name-description-container">
@@ -41,7 +41,7 @@
                 <label class="prefs-labels">Jag vill träffa: </label>
                 <label class="pref-gender-label"></label>
                 <span type="button" class="gender-preference-button"
-                    (click)="openGenderModal(genderContent)">{{prefForm.controls['prefGender'].value}}</span>
+                    (click)="openGenderModal(genderContent)">{{prefForm.controls['gender'].value}}</span>
             </div>
 
             <div class="region-preferences">
@@ -102,7 +102,7 @@
 
 <ng-template #hobbyContent let-modal>
     <div class="container modal-container">
-        <form [formGroup]="form">
+        <form [formGroup]="prefForm">
             <div formArrayName="hobbies">
                 <div *ngFor="let hobby of allHobbies; index as iter" class="modal-hobby-item form-check">
                     <label [for]="'modal-hobby-item' + iter"
@@ -119,7 +119,7 @@
 <ng-template #regionContent let-modal>
     <div class="container modal-container">
         <form [formGroup]="prefForm">
-            <div formArrayName="prefRegions">
+            <div formArrayName="regions">
                 <div *ngFor="let region of allRegions; index as iter" class="modal-region-item form-check">
                     <label [for]="'modal-region-item' + iter"
                         class="form-check-label modal-region-item-label">{{region.name}}</label>
@@ -152,8 +152,8 @@
             <div *ngFor="let gender of allGenders; index as iter" class="modal-gender-item form-check">
                 <label [for]="'modal-gender-item' + iter"
                     class="form-check-label modal-region-item-label">{{gender}}</label>
-                <input type="radio" name="prefGender" [id]="'modal-gender-item' + iter" [value]="gender"
-                    class="form-check-input" formControlName="prefGender">
+                <input type="radio" name="gender" [id]="'modal-gender-item' + iter" [value]="gender"
+                    class="form-check-input" formControlName="gender">
             </div>
         </form>
         <div type="button" class="close" (click)="modal.dismiss('Close')">Klar</div>
