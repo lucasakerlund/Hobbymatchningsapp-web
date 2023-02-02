@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     }
     this.authService.login(this.form.controls['username'].value, this.form.controls['password'].value).subscribe(data => {
       if(typeof data != 'string') {
-        return
+        return;
       }
       sessionStorage.setItem('token', data);
       this.router.navigate(['/profile']);

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
+import { Region } from '../models/region';
 import { ToastService } from './toast.service';
 
 @Injectable({
@@ -17,8 +18,8 @@ export class AuthService {
     .pipe(map(res => res.body || ''), catchError(error => this.handleError(error, 'Något fel inträffade vid inloggning.')));
   }
   
-  register(userName: string, userPassword: string, userEmail: string, userFirstname: string, userLastName: string, gender: string, birthDate: string): Observable<string> {
-    return this.http.post<string>('http://localhost:9090/api/v1/auth/register', {userName, userPassword, userEmail, userFirstname, userLastName, gender, birthDate}, {headers: this.headers, observe: 'response', responseType: 'text' as 'json'})
+  register(userName: string, userPassword: string, userEmail: string, userFirstname: string, userLastName: string, gender: string, birthDate: string, region: Region): Observable<string> {
+    return this.http.post<string>('http://localhost:9090/api/v1/auth/register', {userName, userPassword, userEmail, userFirstname, userLastName, gender, birthDate, region}, {headers: this.headers, observe: 'response', responseType: 'text' as 'json'})
     .pipe(map(res => res.body || ''), catchError(error => this.handleError(error, 'Något fel inträffade vid registrering.')));
   }
 

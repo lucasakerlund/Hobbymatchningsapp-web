@@ -1,13 +1,5 @@
 import { Options } from '@angular-slider/ngx-slider/options';
-import {
-  Component,
-  ElementRef,
-  HostListener,
-  Input,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Hobby } from '../models/hobby';
@@ -15,8 +7,8 @@ import { HobbyController } from '../models/hobby-controller';
 import { Region } from '../models/region';
 import { User } from '../models/user';
 import { RegionController } from '../models/region-controller';
-import { Preference } from '../models/preference';
 import { UserService } from '../services/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -40,60 +32,23 @@ export class ProfileComponent implements OnInit {
   };
 
   allHobbies: Hobby[] = [
-    new Hobby(0, 'JOGGING'),
-    new Hobby(1, 'MUSIK'),
-    new Hobby(2, 'ANIME'),
-    new Hobby(3, 'GAMING'),
-    new Hobby(4, 'CRYPTOCURRENCY'),
-    new Hobby(5, 'SHITPOSTING'),
-    new Hobby(6, 'BINGEWATCHING'),
-    new Hobby(7, 'LÄSNING'),
-    new Hobby(8, 'BLOGGING'),
-    new Hobby(9, 'BILAR'),
+    new Hobby(1, 'JOGGING'),
+    new Hobby(2, 'MUSIK'),
+    new Hobby(3, 'ANIME'),
+    new Hobby(4, 'GAMING'),
+    new Hobby(5, 'CRYPTOCURRENCY'),
+    new Hobby(6, 'SHITPOSTING'),
+    new Hobby(7, 'BINGEWATCHING'),
+    new Hobby(8, 'LÄSNING'),
+    new Hobby(9, 'BLOGGING'),
+    new Hobby(10, 'BILAR'),
   ];
 
-  allRegions: Region[] = [
-    new Region(0, 'testRegion1'),
-    new Region(1, 'testRegion2'),
-    new Region(2, 'testRegion3'),
-    new Region(3, 'testRegion4'),
-    new Region(4, 'testRegion5'),
-    new Region(5, 'testRegion6'),
-    new Region(6, 'testRegion7'),
-    new Region(7, 'testRegion8'),
-    new Region(8, 'testRegion9'),
-    new Region(9, 'testRegion10'),
-    new Region(10, 'testRegion11'),
-    new Region(11, 'testRegion12'),
-    new Region(12, 'testRegion13'),
-    new Region(13, 'testRegion14'),
-    new Region(14, 'testRegion15'),
-    new Region(15, 'testRegion16'),
-    new Region(16, 'testRegion17'),
-    new Region(17, 'testRegion18'),
-    new Region(18, 'testRegion19'),
-    new Region(19, 'testRegion20'),
-  ];
+  allRegions!: Region[];
 
   allGenders: string[] = ['Män', 'Kvinnor', 'Icke-specifierade', 'Samtliga'];
 
-  user: User = new User(
-    '',
-    '',
-    '',
-    '',
-    '',
-    this.allRegions[0],
-    '',
-    '',
-    [this.allHobbies[0]],
-    [this.allRegions[0]],
-    new Preference(0, 0, ''),
-    '',
-    '',
-    '',
-    ''
-  );
+  user!: User;
 
   form!: FormGroup;
 
@@ -101,12 +56,20 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private userService: UserService
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    
+    this.user = this.route.snapshot.data['profileData']['user'];
+    this.allHobbies = this.route.snapshot.data['profileData']['hobbies'];
+    this.allRegions = this.route.snapshot.data['profileData']['regions'];
 
-    this.loadUser();
+    console.log(this.allHobbies);
+
+    console.log(this.user);
 
     this.form = new FormGroup({
       'description': new FormControl(this.user.description),
@@ -117,8 +80,10 @@ export class ProfileComponent implements OnInit {
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$'),
       ]),
-      'personalRegion': new FormControl(this.user.personalRegion.id),
+      'personalRegion': new FormControl(this.user.personalRegion.id, Validators.required),
     });
+
+
 
     this.prefForm = new FormGroup({
       'hobbies': new FormArray(
@@ -207,25 +172,28 @@ export class ProfileComponent implements OnInit {
 
   saveEdit(): void {
     // Send updated info to backend when user hits "save" after editing profile information
+
     this.userService.updateUser(
       this.form.controls['email'].value,
       this.form.controls['first-name'].value,
       this.form.controls['surname'].value,
       this.user.gender,
       this.user.birthdate,
+      this.allRegions[this.form.controls['personalRegion'].value].name,
       '',
       '',
       '',
       '',
-      ''
-    ).subscribe(data => console.log(data));
-    this.userService.updatePreferences(
+      '',
       0,
       0,
-      (this.prefForm.controls['hobbies'] as FormArray).controls.map(controller => this.allHobbies[(controller as HobbyController).hobbyId].name),
-      (this.prefForm.controls['regions'] as FormArray).controls.map(controller => this.allRegions[(controller as RegionController).regionId].name),
+      (this.prefForm.controls['hobbies'] as FormArray).controls.map(controller => this.allHobbies.filter(hobby => hobby.id == (controller as HobbyController).hobbyId)[0].name),
+      (this.prefForm.controls['regions'] as FormArray).controls.map(controller => this.allRegions.filter(region => region.id == (controller as RegionController).regionId)[0].name),
       this.prefForm.controls['gender'].value
-    ).subscribe(data => console.log(data));
+    ).subscribe(data => {
+      console.log(data);
+      this.router.navigate(['profile']);
+    });
   }
 
   cancelEdit(): void {
@@ -256,6 +224,9 @@ export class ProfileComponent implements OnInit {
   }
 
   getPersonalRegionName(regionId: number) {
+    if(!regionId) {
+      return '';
+    }
     return this.allRegions.filter((region) => region.id == regionId)[0].name;
   }
 

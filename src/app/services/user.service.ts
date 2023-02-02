@@ -1,16 +1,19 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, RendererStyleFlags2 } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 import { Preference } from '../models/preference';
 import { Region } from '../models/region';
 import { User } from '../models/user';
+import { ToastService } from './toast.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+  constructor(private http: HttpClient, private toastService: ToastService) { }
 
   getUser(): Observable<User> {
     return this.http.get<any>('http://localhost:9090/api/v1/user/getUser').pipe(map(object => 
@@ -20,8 +23,8 @@ export class UserService {
       object.userName,
       object.contactInformation.userEmail,
       object.birthDate,
-      new Region(0, 'test'),
-      object.gender,
+      object.userRegion,
+      object.userGender,
       object.description,
       object.preferences.hobbies,
       object.preferences.region,
@@ -35,12 +38,20 @@ export class UserService {
       object.contactInformation.snapchat)}));
   }
 
-  updatePreferences(minAge: number, maxAge: number, hobbies: string[], regions: string[], preferedGender: string): Observable<string> {
-    return this.http.put<string>('http://localhost:9090/api/v1/user/updatePreferences', {minAge, maxAge, hobbies, regions, preferedGender});
+  updateUser(userEmail: string, userFirstname: string, userLastName: string,
+    gender: string, birthDate: string, userRegion: string, facebook: string,
+    instagram: string, discord: string, snapchat: string, userPhoneNumber: string,
+    minAge: number, maxAge: number, hobbies: string[], regions: string[], preferedGender: string): Observable<string> {
+    return this.http.put<string>('http://localhost:9090/api/v1/user/updateUser', {
+      userEmail, userFirstname, userLastName, gender, birthDate,
+      userRegion, facebook, instagram, discord, snapchat, userPhoneNumber, minAge, maxAge, hobbies, regions, preferedGender
+    }, {headers: this.headers})
+    .pipe(catchError(error => this.handleError(error, 'Något fel inträffade vid uppdatering.')));
   }
 
-  updateUser(userEmail: string, userFirstname: string, userLastName: string, gender: string, birthDate: string, facebook: string, instagram: string, discord: string, snapchat: string, userPhoneNumber: string): Observable<string> {
-    return this.http.put<string>('http://localhost:9090/api/v1/user/updateUserInformation', {userEmail, userFirstname, userLastName, gender, birthDate, facebook, instagram, discord, snapchat});
+  handleError(error: any, message: string): Observable<any> {
+    this.toastService.show(message, {classname: 'bg-danger text-light', delay: 3000});
+    return of(error);
   }
 
 }

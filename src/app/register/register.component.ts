@@ -42,7 +42,8 @@ export class RegisterComponent implements OnInit {
       firstName,
       surname,
       gender,
-      birthdate.year + '-' + birthdate.month + '-' + birthdate.day).subscribe(data => {
+      birthdate.year + '-' + birthdate.month + '-' + birthdate.day,
+      region).subscribe(data => {
         sessionStorage.setItem('token', data);
     });
   }
