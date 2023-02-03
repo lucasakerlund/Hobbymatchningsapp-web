@@ -5,7 +5,7 @@ import { FlowComponent } from './flow/flow.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
-import { ProfileResolver } from './resolvers/user.resolver';
+import { ProfileResolver } from './resolvers/profile.resolver';
 import { UserViewComponent } from './user-view/user-view.component';
 
 const routes: Routes = [

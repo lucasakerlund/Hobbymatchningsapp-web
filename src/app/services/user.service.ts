@@ -39,12 +39,12 @@ export class UserService {
   }
 
   updateUser(userEmail: string, userFirstname: string, userLastName: string,
-    gender: string, birthDate: string, userRegion: string, facebook: string,
-    instagram: string, discord: string, snapchat: string, userPhoneNumber: string,
+    gender: string, birthDate: string, userRegion: string, description: string,
+    facebook: string, instagram: string, discord: string, snapchat: string, userPhoneNumber: string,
     minAge: number, maxAge: number, hobbies: string[], regions: string[], preferedGender: string): Observable<string> {
     return this.http.put<string>('http://localhost:9090/api/v1/user/updateUser', {
-      userEmail, userFirstname, userLastName, gender, birthDate,
-      userRegion, facebook, instagram, discord, snapchat, userPhoneNumber, minAge, maxAge, hobbies, regions, preferedGender
+      userEmail, userFirstname, userLastName, gender, birthDate, userRegion, description, facebook,
+      instagram, discord, snapchat, userPhoneNumber, minAge, maxAge, hobbies, regions, preferedGender
     }, {headers: this.headers})
     .pipe(catchError(error => this.handleError(error, 'Något fel inträffade vid uppdatering.')));
   }

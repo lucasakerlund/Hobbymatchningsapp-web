@@ -9,6 +9,7 @@ import { User } from '../models/user';
 import { RegionController } from '../models/region-controller';
 import { UserService } from '../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-profile',
@@ -20,11 +21,11 @@ export class ProfileComponent implements OnInit {
 
   regionOptionsExpanded: boolean = true;
 
-  isValuesEdited: boolean = false;
+  areValuesEdited: boolean = false;
 
-  selectedAgeOne: number = 18;
+  selectedMinAge: number = 18;
 
-  selectedAgeTwo: number = 100;
+  selectedMaxAge: number = 100;
 
   ageSliderOptions: Options = {
     floor: 18,
@@ -58,7 +59,7 @@ export class ProfileComponent implements OnInit {
     private modalService: NgbModal,
     private userService: UserService,
     private route: ActivatedRoute,
-    private router: Router
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -112,29 +113,18 @@ export class ProfileComponent implements OnInit {
     });
 
     this.form.valueChanges.subscribe((value) => {
-      this.isValuesEdited =
-        this.form.controls['description'].value == this.user.description &&
-        this.form.controls['first-name'].value == this.user.firstName &&
-        this.form.controls['surname'].value == this.user.surname &&
-        this.form.controls['username'].value == this.user.username &&
-        this.form.controls['email'].value == this.user.email &&
-        this.form.controls['personalRegion'].value ==
-          this.user.personalRegion.id
-          ? false
-          : true;
+      this.calcValuesEdited();
     });
 
     this.prefForm.valueChanges.subscribe((value) => {
-      this.isValuesEdited =
-        this.arraysHaveSameContent(this.prefForm.controls['hobbies'].value, this.allHobbies.map(hobby => this.user.hobbies.map (userHobby => userHobby.id).includes(hobby.id))) &&
-        this.arraysHaveSameContent(this.prefForm.controls['regions'].value, this.allRegions.map(region => this.user.regions.map (userRegion => userRegion.id).includes(region.id))) &&
-        this.prefForm.controls['gender'].value == this.user.gender ? false : true;
+      this.calcValuesEdited();
     });
   }
 
   loadUser(): void {
     this.userService.getUser().subscribe((user) => {
       this.user = user;
+      this.areValuesEdited = false;
     });
   }
 
@@ -179,20 +169,22 @@ export class ProfileComponent implements OnInit {
       this.form.controls['surname'].value,
       this.user.gender,
       this.user.birthdate,
-      this.allRegions[this.form.controls['personalRegion'].value].name,
+      this.allRegions.filter(region => region.id == this.form.controls['personalRegion'].value)[0].name,
+      this.form.controls['description'].value,
       '',
       '',
       '',
       '',
       '',
-      0,
-      0,
+      this.selectedMinAge,
+      this.selectedMaxAge,
       (this.prefForm.controls['hobbies'] as FormArray).controls.map(controller => this.allHobbies.filter(hobby => hobby.id == (controller as HobbyController).hobbyId)[0].name),
       (this.prefForm.controls['regions'] as FormArray).controls.map(controller => this.allRegions.filter(region => region.id == (controller as RegionController).regionId)[0].name),
       this.prefForm.controls['gender'].value
     ).subscribe(data => {
       console.log(data);
-      this.router.navigate(['profile']);
+      this.loadUser();
+      this.toastService.show('Uppdaterade profilsidan.', {classname: 'bg-success text-light', delay: 3000});
     });
   }
 
@@ -230,8 +222,25 @@ export class ProfileComponent implements OnInit {
     return this.allRegions.filter((region) => region.id == regionId)[0].name;
   }
 
- arraysHaveSameContent(arr1: any[], arr2: any[]): boolean {
-  return arr1.length === arr2.length && arr1.every((value, index) => arr2[index] === value);
- }
+  calcValuesEdited(): void {
+    this.areValuesEdited =
+        this.form.controls['description'].value == this.user.description &&
+        this.form.controls['first-name'].value == this.user.firstName &&
+        this.form.controls['surname'].value == this.user.surname &&
+        this.form.controls['username'].value == this.user.username &&
+        this.form.controls['email'].value == this.user.email &&
+        this.form.controls['personalRegion'].value == this.user.personalRegion.id &&
+        this.arraysHaveSameContent(this.prefForm.controls['hobbies'].value, this.allHobbies.map(hobby => this.user.hobbies.map (userHobby => userHobby.id).includes(hobby.id))) &&
+        this.arraysHaveSameContent(this.prefForm.controls['regions'].value, this.allRegions.map(region => this.user.regions.map (userRegion => userRegion.id).includes(region.id))) &&
+        this.prefForm.controls['gender'].value == this.user.gender &&
+        this.selectedMinAge == this.user.preference.minAge &&
+        this.selectedMaxAge == this.user.preference.maxAge
+          ? false
+          : true;
+  }
+
+  arraysHaveSameContent(arr1: any[], arr2: any[]): boolean {
+    return arr1.length === arr2.length && arr1.every((value, index) => arr2[index] === value);
+  }
 
 }

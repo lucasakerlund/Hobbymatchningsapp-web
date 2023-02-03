@@ -51,7 +51,7 @@
 
             <div class="age-preferences">
                 <label class="prefs-labels">Åldersspann</label>
-                <ngx-slider [(value)]="selectedAgeOne" [(highValue)]="selectedAgeTwo"
+                <ngx-slider [(value)]="selectedMinAge" [(highValue)]="selectedMaxAge"
                     [options]="ageSliderOptions"></ngx-slider>
             </div>
 
@@ -93,7 +93,7 @@
 
     </div>
 
-    <div [hidden]="!isValuesEdited" class="fifth-row">
+    <div [hidden]="!areValuesEdited" class="fifth-row">
         <div type="button" class="cancel" (click)="cancelEdit()">Avbryt</div>
         <div type="button" class="save-button" (click)="saveEdit()">Spara</div>
     </div>
