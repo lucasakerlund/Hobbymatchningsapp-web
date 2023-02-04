@@ -35,7 +35,8 @@ export class UserService {
       object.contactInformation.userPhoneNumber,
       object.contactInformation.facebook,
       object.contactInformation.discord,
-      object.contactInformation.snapchat)}));
+      object.contactInformation.snapchat,
+      object.contactInformation.instagram)}));
   }
 
   updateUser(userEmail: string, userFirstname: string, userLastName: string,

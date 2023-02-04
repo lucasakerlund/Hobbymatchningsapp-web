@@ -19,5 +19,6 @@ export class User {
         public phoneNumber: string,
         public facebook: string,
         public discord: string,
-        public snapchat: string) { }
+        public snapchat: string,
+        public instagram: string) { }
 }

@@ -82,6 +82,11 @@ export class ProfileComponent implements OnInit {
         Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$'),
       ]),
       'personalRegion': new FormControl(this.user.personalRegion.id, Validators.required),
+      'discord': new FormControl(this.user.discord),
+      'snapchat': new FormControl(this.user.snapchat),
+      'instagram': new FormControl(this.user.instagram),
+      'facebook': new FormControl(this.user.facebook),
+      'phoneNumber': new FormControl(this.user.phoneNumber),
     });
 
 
@@ -171,11 +176,11 @@ export class ProfileComponent implements OnInit {
       this.user.birthdate,
       this.allRegions.filter(region => region.id == this.form.controls['personalRegion'].value)[0].name,
       this.form.controls['description'].value,
-      '',
-      '',
-      '',
-      '',
-      '',
+      this.form.controls['facebook'].value,
+      this.form.controls['instagram'].value,
+      this.form.controls['discord'].value,
+      this.form.controls['snapchat'].value,
+      this.form.controls['phoneNumber'].value,
       this.selectedMinAge,
       this.selectedMaxAge,
       (this.prefForm.controls['hobbies'] as FormArray).controls.map(controller => this.allHobbies.filter(hobby => hobby.id == (controller as HobbyController).hobbyId)[0].name),
@@ -195,6 +200,11 @@ export class ProfileComponent implements OnInit {
     this.form.controls['username'].setValue(this.user.username);
     this.form.controls['email'].setValue(this.user.email);
     this.form.controls['personalRegion'].setValue(this.user.personalRegion.id);
+    this.form.controls['phoneNumber'].setValue(this.user.phoneNumber);
+    this.form.controls['discord'].setValue(this.user.discord);
+    this.form.controls['snapchat'].setValue(this.user.snapchat);
+    this.form.controls['instagram'].setValue(this.user.instagram);
+    this.form.controls['facebook'].setValue(this.user.facebook);
 
     //Preferences
     this.prefForm.controls['hobbies'].setValue(this.allHobbies.map(hobby => this.user.hobbies.map (userHobby => userHobby.id).includes(hobby.id)));
@@ -230,6 +240,11 @@ export class ProfileComponent implements OnInit {
         this.form.controls['username'].value == this.user.username &&
         this.form.controls['email'].value == this.user.email &&
         this.form.controls['personalRegion'].value == this.user.personalRegion.id &&
+        this.form.controls['phoneNumber'].value == this.user.phoneNumber &&
+        this.form.controls['discord'].value == this.user.discord &&
+        this.form.controls['snapchat'].value == this.user.snapchat &&
+        this.form.controls['instagram'].value == this.user.instagram &&
+        this.form.controls['facebook'].value == this.user.facebook &&
         this.arraysHaveSameContent(this.prefForm.controls['hobbies'].value, this.allHobbies.map(hobby => this.user.hobbies.map (userHobby => userHobby.id).includes(hobby.id))) &&
         this.arraysHaveSameContent(this.prefForm.controls['regions'].value, this.allRegions.map(region => this.user.regions.map (userRegion => userRegion.id).includes(region.id))) &&
         this.prefForm.controls['gender'].value == this.user.gender &&

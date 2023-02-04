@@ -88,6 +88,21 @@
                         (click)="openPersonalRegionModal(personalRegionContent)">{{getPersonalRegionName(form.controls['personalRegion'].value)}}</button>
                 </div>
 
+                <app-text class="mt-3" label="Telefon:" identifier="phoneNumber" placeholder="Telefonnummer"
+                    [control]="form.controls['phoneNumber']"></app-text>
+
+                    <app-text class="mt-3" label="Discord:" identifier="discord" placeholder="Discord"
+                    [control]="form.controls['discord']"></app-text>
+
+                    <app-text class="mt-3" label="Snapchat:" identifier="snapchat" placeholder="Snapchat"
+                    [control]="form.controls['snapchat']"></app-text>
+
+                    <app-text class="mt-3" label="Instagram:" identifier="instagram" placeholder="Instagram"
+                    [control]="form.controls['instagram']"></app-text>
+
+                    <app-text class="mt-3" label="Facebook:" identifier="facebook" placeholder="Facebook"
+                    [control]="form.controls['facebook']"></app-text>
+
             </div>
         </div>
 
