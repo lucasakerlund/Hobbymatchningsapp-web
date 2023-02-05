@@ -37,14 +37,14 @@ export class ContactsComponent implements OnInit {
 
   accept(userId: string): void {
     this.contactService.accept(userId).subscribe(data => {
-      this.toastService.show('Uppdaterade profilsidan.', {classname: 'bg-success text-light', delay: 3000});
+      this.toastService.show('Accepterade vänförfrågan.', {classname: 'bg-success text-light', delay: 3000});
       this.loadContacts();
     });
   }
 
   deny(userId: string): void {
     this.contactService.deny(userId).subscribe(data => {
-      this.toastService.show('Uppdaterade profilsidan.', {classname: 'bg-success text-light', delay: 3000});
+      this.toastService.show('Nekade vänförfrågan.', {classname: 'bg-warning text-light', delay: 3000});
       this.loadContacts();
     });
   }
