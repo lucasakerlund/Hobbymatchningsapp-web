@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Contact } from '../models/contact';
+import { ContactService } from '../services/contact.service';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-contacts',
@@ -10,194 +13,14 @@ export class ContactsComponent implements OnInit {
 
   optionsExpanded: boolean = true;
   
-  AllContacts: {collapsed: boolean, contact: Contact}[] = [
-    {
-      collapsed: true,
-      contact: new Contact(
-        '0',
-        'PENDING',
-        'Baby',
-        'Yodas',
-        'userName',
-        {
-          discord: '0',
-          snapchat: '1',
-          instagram: '2',
-          facebook: '3',
-          email: '4',
-          phone: '5'
-        }
-      )
-    },
-    {
-      collapsed: true,
-      contact: new Contact(
-        '1',
-        'PENDING',
-        'Baby',
-        'Gunilla',
-        'userName',
-        {
-          discord: '0',
-          snapchat: '1',
-          instagram: '2',
-          facebook: '3',
-          email: '4',
-          phone: '5'
-        }
-      )
-    },
-    {
-      collapsed: true,
-      contact: new Contact(
-        '2',
-        'PENDING',
-        'Yoda',
-        'Yoda',
-        'userName',
-        {
-          discord: '0',
-          snapchat: '1',
-          instagram: '2',
-          facebook: '3',
-          email: '4',
-          phone: '5'
-        }
-      )
-    },
-    {
-      collapsed: true,
-      contact: new Contact(
-        '3',
-        'FRIEND',
-        'Gunilla',
-        'Robert',
-        'userName',
-        {
-          discord: '0',
-          snapchat: '1',
-          instagram: '2',
-          facebook: '3',
-          email: '4',
-          phone: '5'
-        }
-      )
-    },
-    {
-      collapsed: true,
-      contact: new Contact(
-        '4',
-        'FRIEND',
-        'Gunilla',
-        'Tetris',
-        'userName',
-        {
-          discord: '0',
-          snapchat: '1',
-          instagram: '2',
-          facebook: '3',
-          email: '4',
-          phone: '5'
-        }
-      )
-    },
-    {
-      collapsed: true,
-      contact: new Contact(
-        '5',
-        'FRIEND',
-        'Gunilla',
-        'gORILLAZ',
-        'userName',
-        {
-          discord: '0',
-          snapchat: '1',
-          instagram: '2',
-          facebook: '3',
-          email: '4',
-          phone: '5'
-        }
-      )
-    },
-    {
-      collapsed: true,
-      contact: new Contact(
-        '6',
-        'BLOCKED',
-        'Julius',
-        'Thomsen',
-        'userName',
-        {
-          discord: '0',
-          snapchat: '1',
-          instagram: '2',
-          facebook: '3',
-          email: '4',
-          phone: '5'
-        }
-      )
-    },
-    {
-      collapsed: true,
-      contact: new Contact(
-        '7',
-        'BLOCKED',
-        'Henning',
-        'Oksa',
-        'userName',
-        {
-          discord: '0',
-          snapchat: '1',
-          instagram: '2',
-          facebook: '3',
-          email: '4',
-          phone: '5'
-        }
-      )
-    },
-    {
-      collapsed: true,
-      contact: new Contact(
-        '8',
-        'BLOCKED',
-        'Lucas',
-        'Åkerlund',
-        'userName',
-        {
-          discord: '0',
-          snapchat: '1',
-          instagram: '2',
-          facebook: '3',
-          email: '4',
-          phone: '5'
-        }
-      )
-    },
-    {
-      collapsed: true,
-      contact: new Contact(
-        '8',
-        'BLOCKED',
-        'Niklas',
-        'Gottfridsson Jeng',
-        'userName',
-        {
-          discord: '0',
-          snapchat: '1',
-          instagram: '2',
-          facebook: '3',
-          email: '4',
-          phone: '5'
-        }
-      )
-    }
-];
+  AllContacts!: {collapsed: boolean, contact: Contact}[];
   
-  
-
-  constructor() { }
+  constructor(private contactService: ContactService,
+              private route: ActivatedRoute,
+              private toastService: ToastService) { }
 
   ngOnInit(): void {
+    this.AllContacts = this.route.snapshot.data['contactData'].map((contact: Contact) => {return {collapsed: true, contact};});
   }
 
   getFriendRequests(): {collapsed: boolean, contact: Contact}[]{
@@ -205,10 +28,32 @@ export class ContactsComponent implements OnInit {
   }
 
   getFriends(): {collapsed: boolean, contact: Contact}[]{
-    return this.AllContacts.filter(contact => contact.contact.status==='FRIEND');
+    return this.AllContacts.filter(contact => contact.contact.status==='FRIENDS');
   }
 
   getBlocked(): {collapsed: boolean, contact: Contact}[]{
     return this.AllContacts.filter(contact => contact.contact.status==='BLOCKED');
   }
+
+  accept(userId: string): void {
+    this.contactService.accept(userId).subscribe(data => {
+      this.toastService.show('Uppdaterade profilsidan.', {classname: 'bg-success text-light', delay: 3000});
+      this.loadContacts();
+    });
+  }
+
+  deny(userId: string): void {
+    this.contactService.deny(userId).subscribe(data => {
+      this.toastService.show('Uppdaterade profilsidan.', {classname: 'bg-success text-light', delay: 3000});
+      this.loadContacts();
+    });
+  }
+
+  loadContacts(): void {
+    this.contactService.getContacts().subscribe(data => this.AllContacts = data.map(contact => {
+      return {collapsed: true, contact};
+    }));
+
+  }
+
 }

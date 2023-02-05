@@ -5,6 +5,7 @@ import { FlowComponent } from './flow/flow.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
+import { ContactsResolver } from './resolvers/contacts.resolver';
 import { ProfileResolver } from './resolvers/profile.resolver';
 import { UserViewComponent } from './user-view/user-view.component';
 
@@ -14,7 +15,9 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent, resolve: {
     profileData: ProfileResolver
   }},
-  {path: 'contacts', component: ContactsComponent},
+  {path: 'contacts', component: ContactsComponent, resolve: {
+    contactData: ContactsResolver
+  }},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
 ];

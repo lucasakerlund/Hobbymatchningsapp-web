@@ -1,3 +1,5 @@
+import { ContactInformation } from "./contact-information";
+
 export class Contact {
    
 
@@ -6,17 +8,6 @@ export class Contact {
         public status: string, 
         public firstName: string, 
         public surname: string, 
-        public userName: String,
-        public contactInformation: {
-            discord: string,
-            snapchat: string,
-            instagram: string,
-            facebook: string,
-            email: string,
-            phone: string;
-        }
-        ){
-        
-
-    }
+        public username: String,
+        public contactInformation: ContactInformation){ }
 }

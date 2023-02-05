@@ -7,13 +7,8 @@
         <div *ngFor="let contact of getFriendRequests()" class="request-box">
             <div type="button" class="friend-request">{{contact.contact.firstName + ' ' + contact.contact.surname}}</div>
             <div class="button-container">
-
-                <span type="button" class="acceptRequestButton icon icon-done"></span>
-
-
-                <span type="button" class="declineRequestButton icon icon-close"></span>
-
-
+                <span type="button" class="acceptRequestButton icon icon-done" (click)="accept(contact.contact.userId)"></span>
+                <span type="button" class="declineRequestButton icon icon-close" (click)="deny(contact.contact.userId)"></span>
             </div>
         </div>
     </div>

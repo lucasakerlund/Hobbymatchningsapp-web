@@ -68,10 +68,6 @@ export class ProfileComponent implements OnInit {
     this.allHobbies = this.route.snapshot.data['profileData']['hobbies'];
     this.allRegions = this.route.snapshot.data['profileData']['regions'];
 
-    console.log(this.allHobbies);
-
-    console.log(this.user);
-
     this.form = new FormGroup({
       'description': new FormControl(this.user.description),
       'first-name': new FormControl(this.user.firstName, Validators.required),
@@ -187,7 +183,6 @@ export class ProfileComponent implements OnInit {
       (this.prefForm.controls['regions'] as FormArray).controls.map(controller => this.allRegions.filter(region => region.id == (controller as RegionController).regionId)[0].name),
       this.prefForm.controls['gender'].value
     ).subscribe(data => {
-      console.log(data);
       this.loadUser();
       this.toastService.show('Uppdaterade profilsidan.', {classname: 'bg-success text-light', delay: 3000});
     });
