@@ -163,7 +163,6 @@ export class ProfileComponent implements OnInit {
 
   saveEdit(): void {
     // Send updated info to backend when user hits "save" after editing profile information
-
     this.userService.updateUser(
       this.form.controls['email'].value,
       this.form.controls['first-name'].value,
@@ -179,8 +178,8 @@ export class ProfileComponent implements OnInit {
       this.form.controls['phoneNumber'].value,
       this.selectedMinAge,
       this.selectedMaxAge,
-      (this.prefForm.controls['hobbies'] as FormArray).controls.map(controller => this.allHobbies.filter(hobby => hobby.id == (controller as HobbyController).hobbyId)[0].name),
-      (this.prefForm.controls['regions'] as FormArray).controls.map(controller => this.allRegions.filter(region => region.id == (controller as RegionController).regionId)[0].name),
+      (this.prefForm.controls['hobbies'] as FormArray).controls.filter(controller => controller.value).map(controller => this.allHobbies.filter(hobby => hobby.id == (controller as HobbyController).hobbyId)[0].name),
+      (this.prefForm.controls['regions'] as FormArray).controls.filter(controller => controller.value).map(controller => this.allRegions.filter(region => region.id == (controller as RegionController).regionId)[0].name),
       this.prefForm.controls['gender'].value
     ).subscribe(data => {
       this.loadUser();

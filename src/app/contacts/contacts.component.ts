@@ -35,16 +35,16 @@ export class ContactsComponent implements OnInit {
     return this.AllContacts.filter(contact => contact.contact.status==='BLOCKED');
   }
 
-  accept(userId: string): void {
-    this.contactService.accept(userId).subscribe(data => {
-      this.toastService.show('Accepterade vänförfrågan.', {classname: 'bg-success text-light', delay: 3000});
+  accept(contact: Contact): void {
+    this.contactService.accept(contact.userId).subscribe(data => {
+      this.toastService.show(`Accepterade vänförfrågan för ${contact.firstName + ' ' + contact.surname}.`, {classname: 'bg-success text-light', delay: 3000});
       this.loadContacts();
     });
   }
 
-  deny(userId: string): void {
-    this.contactService.deny(userId).subscribe(data => {
-      this.toastService.show('Nekade vänförfrågan.', {classname: 'bg-warning text-light', delay: 3000});
+  deny(contact: Contact): void {
+    this.contactService.deny(contact.userId).subscribe(data => {
+      this.toastService.show(`Nekade vänförfrågan för ${contact.firstName + ' ' + contact.surname}.`, {classname: 'bg-warning text-light', delay: 3000});
       this.loadContacts();
     });
   }
