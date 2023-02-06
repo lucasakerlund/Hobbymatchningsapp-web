@@ -1,5 +1,5 @@
 import { Options } from '@angular-slider/ngx-slider/options';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Hobby } from '../models/hobby';
@@ -16,16 +16,34 @@ import { ToastService } from '../services/toast.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnChanges {
   optionsExpanded: boolean = true;
 
   regionOptionsExpanded: boolean = true;
 
   areValuesEdited: boolean = false;
 
-  selectedMinAge: number = 18;
+  _selectedMinAge: number = 18;
 
-  selectedMaxAge: number = 100;
+  _selectedMaxAge: number = 100;
+
+  set selectedMinAge(value: number) {
+    this._selectedMinAge = value;
+    this.calcValuesEdited();
+  }
+
+  get selectedMinAge(): number {
+    return this._selectedMinAge;
+  }
+
+  set selectedMaxAge(value: number) {
+    this._selectedMaxAge = value;
+    this.calcValuesEdited();
+  }
+
+  get selectedMaxAge(): number {
+    return this._selectedMaxAge;
+  }
 
   ageSliderOptions: Options = {
     floor: 18,
@@ -62,11 +80,18 @@ export class ProfileComponent implements OnInit {
     private toastService: ToastService
   ) {}
 
+  ngOnChanges() {
+    console.log('selectedMinAge changed: ', this.selectedMinAge);
+  }
+
   ngOnInit(): void {
     
     this.user = this.route.snapshot.data['profileData']['user'];
     this.allHobbies = this.route.snapshot.data['profileData']['hobbies'];
     this.allRegions = this.route.snapshot.data['profileData']['regions'];
+
+    this._selectedMinAge = this.user.preference.minAge;
+    this._selectedMaxAge = this.user.preference.maxAge;
 
     this.form = new FormGroup({
       'description': new FormControl(this.user.description),
@@ -204,6 +229,9 @@ export class ProfileComponent implements OnInit {
     this.prefForm.controls['hobbies'].setValue(this.allHobbies.map(hobby => this.user.hobbies.map (userHobby => userHobby.id).includes(hobby.id)));
     this.prefForm.controls['regions'].setValue(this.allRegions.map(region => this.user.regions.map (userRegion => userRegion.id).includes(region.id)));
     this.prefForm.controls['gender'].setValue(this.user.gender);
+
+    this.selectedMinAge = this.user.preference.minAge;
+    this.selectedMaxAge = this.user.preference.maxAge;
 
   }
 
