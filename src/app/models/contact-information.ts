@@ -6,6 +6,6 @@ export class ContactInformation {
         public instagram: string,
         public facebook: string,
         public email: string,
-        public phone: string) { }
+        public phoneNumber: string) { }
 
 }

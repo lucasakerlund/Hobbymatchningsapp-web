@@ -7,7 +7,7 @@
                 <img id="avatar" src="/assets/902671383996268564.webp" alt="">
             </div>
             <div class="gender">Kön: {{user.gender}}</div>
-            <div class="region">Region: {{user.personalRegion.name}}</div>
+            <div class="region">Region: {{user.region.name}}</div>
 
             <div *ngIf="!isFriend" class="add-block-div">
                 <button class="add-button" (click)="addFriend()"> <span class="icon icon-add"></span>Lägg till vän</button>
@@ -32,7 +32,7 @@
 
     <div class="second-row">
         <div class="hobby-container">
-            <div class="hobby" *ngFor="let hobby of user.hobbies">
+            <div class="hobby" *ngFor="let hobby of user.preferences.hobbies">
                 <label class="hobby-text">{{hobby.name}}</label>
             </div>
         </div>
@@ -55,27 +55,27 @@
             <!-- Each if "isFriend" checks if user is on your friendlist, if they are then we can also display their contact information-->
             <div *ngIf="isFriend" class="info-container">
                 <div class="info-label">Email-adress:</div>
-                <div class="info">{{user.email}}</div>
+                <div class="info">{{user.contactInformation.email}}</div>
             </div>
 
             <div *ngIf="isFriend" class="info-container">
                 <div class="info-label">phone number:</div>
-                <div class="info">{{user.phoneNumber}}</div>
+                <div class="info">{{user.contactInformation.phoneNumber}}</div>
             </div>
 
             <div *ngIf="isFriend" class="info-container">
                 <div class="info-label">Facebook:</div>
-                <div class="info">{{user.facebook}}</div>
+                <div class="info">{{user.contactInformation.facebook}}</div>
             </div>
 
             <div *ngIf="isFriend" class="info-container">
                 <div class="info-label">Discord:</div>
-                <div class="info">{{user.discord}}</div>
+                <div class="info">{{user.contactInformation.discord}}</div>
             </div>
 
             <div *ngIf="isFriend" class="info-container">
                 <div class="info-label">Snapchat:</div>
-                <div class="info">{{user.snapchat}}</div>
+                <div class="info">{{user.contactInformation.snapchat}}</div>
             </div>
 
         </div>

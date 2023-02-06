@@ -16,27 +16,7 @@ export class UserService {
   constructor(private http: HttpClient, private toastService: ToastService) { }
 
   getUser(): Observable<User> {
-    return this.http.get<any>('http://localhost:9090/api/v1/user/getUser').pipe(map(object => 
-    { console.log(object); return new User(
-      object.userFirstname,
-      object.userLastName,
-      object.userName,
-      object.contactInformation.userEmail,
-      object.birthDate,
-      object.userRegion,
-      object.userGender,
-      object.description,
-      object.preferences.hobbies,
-      object.preferences.region,
-      new Preference(object.preferences.minAge,
-        object.preferences.maxAge,
-        object.preferences.gender
-      ),
-      object.contactInformation.userPhoneNumber,
-      object.contactInformation.facebook,
-      object.contactInformation.discord,
-      object.contactInformation.snapchat,
-      object.contactInformation.instagram)}));
+    return this.http.get<User>('http://localhost:9090/api/v1/user/getUser');
   }
 
   updateUser(userEmail: string, userFirstname: string, userLastName: string,

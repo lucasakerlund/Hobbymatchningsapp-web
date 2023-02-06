@@ -90,33 +90,31 @@ export class ProfileComponent implements OnInit, OnChanges {
     this.allHobbies = this.route.snapshot.data['profileData']['hobbies'];
     this.allRegions = this.route.snapshot.data['profileData']['regions'];
 
-    this._selectedMinAge = this.user.preference.minAge;
-    this._selectedMaxAge = this.user.preference.maxAge;
+    this._selectedMinAge = this.user.preferences.minAge;
+    this._selectedMaxAge = this.user.preferences.maxAge;
 
     this.form = new FormGroup({
       'description': new FormControl(this.user.description),
       'first-name': new FormControl(this.user.firstName, Validators.required),
       'surname': new FormControl(this.user.surname, Validators.required),
       'username': new FormControl(this.user.username, Validators.required),
-      'email': new FormControl(this.user.email, [
+      'email': new FormControl(this.user.contactInformation.email, [
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$'),
       ]),
-      'personalRegion': new FormControl(this.user.personalRegion.id, Validators.required),
-      'discord': new FormControl(this.user.discord),
-      'snapchat': new FormControl(this.user.snapchat),
-      'instagram': new FormControl(this.user.instagram),
-      'facebook': new FormControl(this.user.facebook),
-      'phoneNumber': new FormControl(this.user.phoneNumber),
+      'personalRegion': new FormControl(this.user.region.id, Validators.required),
+      'discord': new FormControl(this.user.contactInformation.discord),
+      'snapchat': new FormControl(this.user.contactInformation.snapchat),
+      'instagram': new FormControl(this.user.contactInformation.instagram),
+      'facebook': new FormControl(this.user.contactInformation.facebook),
+      'phoneNumber': new FormControl(this.user.contactInformation.phoneNumber),
     });
-
-
 
     this.prefForm = new FormGroup({
       'hobbies': new FormArray(
         this.allHobbies.map((hobby) => {
           const control = new HobbyController(
-            this.user.hobbies
+            this.user.preferences.hobbies
               .map((userHobby) => userHobby.id)
               .includes(hobby.id)
           );
@@ -127,7 +125,7 @@ export class ProfileComponent implements OnInit, OnChanges {
       'regions': new FormArray(
         this.allRegions.map((region) => {
           const control = new RegionController(
-            this.user.regions
+            this.user.preferences.regions
               .map((prefRegion) => prefRegion.id)
               .includes(region.id)
           );
@@ -135,7 +133,7 @@ export class ProfileComponent implements OnInit, OnChanges {
           return control;
         })
       ),
-      'gender': new FormControl(this.user.preference.gender),
+      'gender': new FormControl(this.user.preferences.gender),
     });
 
     this.form.valueChanges.subscribe((value) => {
@@ -217,21 +215,21 @@ export class ProfileComponent implements OnInit, OnChanges {
     this.form.controls['first-name'].setValue(this.user.firstName);
     this.form.controls['surname'].setValue(this.user.surname);
     this.form.controls['username'].setValue(this.user.username);
-    this.form.controls['email'].setValue(this.user.email);
-    this.form.controls['personalRegion'].setValue(this.user.personalRegion.id);
-    this.form.controls['phoneNumber'].setValue(this.user.phoneNumber);
-    this.form.controls['discord'].setValue(this.user.discord);
-    this.form.controls['snapchat'].setValue(this.user.snapchat);
-    this.form.controls['instagram'].setValue(this.user.instagram);
-    this.form.controls['facebook'].setValue(this.user.facebook);
+    this.form.controls['email'].setValue(this.user.contactInformation.email);
+    this.form.controls['personalRegion'].setValue(this.user.region.id);
+    this.form.controls['phoneNumber'].setValue(this.user.contactInformation.phoneNumber);
+    this.form.controls['discord'].setValue(this.user.contactInformation.discord);
+    this.form.controls['snapchat'].setValue(this.user.contactInformation.snapchat);
+    this.form.controls['instagram'].setValue(this.user.contactInformation.instagram);
+    this.form.controls['facebook'].setValue(this.user.contactInformation.facebook);
 
     //Preferences
-    this.prefForm.controls['hobbies'].setValue(this.allHobbies.map(hobby => this.user.hobbies.map (userHobby => userHobby.id).includes(hobby.id)));
-    this.prefForm.controls['regions'].setValue(this.allRegions.map(region => this.user.regions.map (userRegion => userRegion.id).includes(region.id)));
+    this.prefForm.controls['hobbies'].setValue(this.allHobbies.map(hobby => this.user.preferences.hobbies.map (userHobby => userHobby.id).includes(hobby.id)));
+    this.prefForm.controls['regions'].setValue(this.allRegions.map(region => this.user.preferences.regions.map (userRegion => userRegion.id).includes(region.id)));
     this.prefForm.controls['gender'].setValue(this.user.gender);
 
-    this.selectedMinAge = this.user.preference.minAge;
-    this.selectedMaxAge = this.user.preference.maxAge;
+    this.selectedMinAge = this.user.preferences.minAge;
+    this.selectedMaxAge = this.user.preferences.maxAge;
 
   }
 
@@ -260,18 +258,18 @@ export class ProfileComponent implements OnInit, OnChanges {
         this.form.controls['first-name'].value == this.user.firstName &&
         this.form.controls['surname'].value == this.user.surname &&
         this.form.controls['username'].value == this.user.username &&
-        this.form.controls['email'].value == this.user.email &&
-        this.form.controls['personalRegion'].value == this.user.personalRegion.id &&
-        this.form.controls['phoneNumber'].value == this.user.phoneNumber &&
-        this.form.controls['discord'].value == this.user.discord &&
-        this.form.controls['snapchat'].value == this.user.snapchat &&
-        this.form.controls['instagram'].value == this.user.instagram &&
-        this.form.controls['facebook'].value == this.user.facebook &&
-        this.arraysHaveSameContent(this.prefForm.controls['hobbies'].value, this.allHobbies.map(hobby => this.user.hobbies.map (userHobby => userHobby.id).includes(hobby.id))) &&
-        this.arraysHaveSameContent(this.prefForm.controls['regions'].value, this.allRegions.map(region => this.user.regions.map (userRegion => userRegion.id).includes(region.id))) &&
+        this.form.controls['email'].value == this.user.contactInformation.email &&
+        this.form.controls['personalRegion'].value == this.user.region.id &&
+        this.form.controls['phoneNumber'].value == this.user.contactInformation.phoneNumber &&
+        this.form.controls['discord'].value == this.user.contactInformation.discord &&
+        this.form.controls['snapchat'].value == this.user.contactInformation.snapchat &&
+        this.form.controls['instagram'].value == this.user.contactInformation.instagram &&
+        this.form.controls['facebook'].value == this.user.contactInformation.facebook &&
+        this.arraysHaveSameContent(this.prefForm.controls['hobbies'].value, this.allHobbies.map(hobby => this.user.preferences.hobbies.map (userHobby => userHobby.id).includes(hobby.id))) &&
+        this.arraysHaveSameContent(this.prefForm.controls['regions'].value, this.allRegions.map(region => this.user.preferences.regions.map (userRegion => userRegion.id).includes(region.id))) &&
         this.prefForm.controls['gender'].value == this.user.gender &&
-        this.selectedMinAge == this.user.preference.minAge &&
-        this.selectedMaxAge == this.user.preference.maxAge
+        this.selectedMinAge == this.user.preferences.minAge &&
+        this.selectedMaxAge == this.user.preferences.maxAge
           ? false
           : true;
   }
