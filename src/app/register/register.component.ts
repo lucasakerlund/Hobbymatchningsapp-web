@@ -34,7 +34,10 @@ export class RegisterComponent implements OnInit {
       return;
     }
     const {['first-name']: firstName, surname, email, username, password, birthdate, gender, region } = this.form.getRawValue();
-    console.log(this.form.getRawValue());
+    const date: string = birthdate.year + '-'
+                        + (birthdate.month > 9 ? birthdate.month : '0' + birthdate.month) + '-'
+                        + (birthdate.day > 9 ? birthdate.day : '0' + birthdate.day);
+    console.log(date);
     this.authService.register(
       username,
       password,
@@ -42,7 +45,7 @@ export class RegisterComponent implements OnInit {
       firstName,
       surname,
       gender,
-      birthdate.year + '-' + birthdate.month + '-' + birthdate.day,
+      date,
       region).subscribe(data => {
         sessionStorage.setItem('token', data);
     });

@@ -1,5 +1,4 @@
 import { ContactInformation } from "./contact-information";
-import { Hobby } from "./hobby";
 import { Preference } from "./preference";
 import { Region } from "./region";
 

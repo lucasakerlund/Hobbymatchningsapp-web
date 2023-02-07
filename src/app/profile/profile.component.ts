@@ -16,7 +16,7 @@ import { ToastService } from '../services/toast.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
 })
-export class ProfileComponent implements OnInit, OnChanges {
+export class ProfileComponent implements OnInit {
   optionsExpanded: boolean = true;
 
   regionOptionsExpanded: boolean = true;
@@ -79,10 +79,6 @@ export class ProfileComponent implements OnInit, OnChanges {
     private route: ActivatedRoute,
     private toastService: ToastService
   ) {}
-
-  ngOnChanges() {
-    console.log('selectedMinAge changed: ', this.selectedMinAge);
-  }
 
   ngOnInit(): void {
     
@@ -186,6 +182,7 @@ export class ProfileComponent implements OnInit, OnChanges {
 
   saveEdit(): void {
     // Send updated info to backend when user hits "save" after editing profile information
+
     this.userService.updateUser(
       this.form.controls['email'].value,
       this.form.controls['first-name'].value,
