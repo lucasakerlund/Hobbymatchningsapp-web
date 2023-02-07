@@ -7,10 +7,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { ContactsResolver } from './resolvers/contacts.resolver';
 import { ProfileResolver } from './resolvers/profile.resolver';
+import { UserViewResolver } from './resolvers/user-view.resolver';
 import { UserViewComponent } from './user-view/user-view.component';
 
 const routes: Routes = [
-  {path: 'user/:id', component: UserViewComponent},
+  {path: 'user/:id', component: UserViewComponent, resolve: {
+    data: UserViewResolver
+  }},
   {path: 'flode', component: FlowComponent},
   {path: 'profile', component: ProfileComponent, resolve: {
     profileData: ProfileResolver

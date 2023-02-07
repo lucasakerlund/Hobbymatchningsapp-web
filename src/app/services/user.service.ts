@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, RendererStyleFlags2 } from '@angular/core';
-import { catchError, map, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of, tap } from 'rxjs';
 import { Match } from '../models/match';
 import { Preference } from '../models/preference';
 import { Region } from '../models/region';
@@ -33,6 +33,15 @@ export class UserService {
 
   getMatches(): Observable<Match[]> {
     return this.http.get<Match[]>('http://localhost:9090/api/v1/user/getMatches');
+  }
+  
+  getUserById(userId: string): Observable<User> {
+    return this.http.get<User>('http://localhost:9090/api/v1/user/getUserById/' + userId);
+  }
+
+  getContactStatus(userId: string): Observable<string> {
+    // This will return status of logged in user and clicked user as a Stringgg    
+    return this.http.get<any>('http://localhost:9090/api/v1/contacts/getFriendStatus/' + userId);
   }
 
   handleError(error: any, message: string): Observable<any> {

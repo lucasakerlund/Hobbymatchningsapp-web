@@ -58,9 +58,6 @@ export class ContactsComponent implements OnInit {
   }
 
   getClickedProfile(userId: string): void {
-    console.log('Should be a 1 I think: ' + userId);
-
-
     this.router.navigate(['/user/' + userId])
   }
 

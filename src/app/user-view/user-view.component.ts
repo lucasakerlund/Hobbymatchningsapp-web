@@ -15,22 +15,24 @@ export class UserViewComponent {
 
   userId!: string;
   user!: User;
+  status!: string;
 
   // When a user is selected, we must also assign true or false to this boolean to tell that to the page - friends display more information
   isFriend!: boolean;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient) {
+
+  }
 
   ngOnInit(): void {
-    this.userId = this.route.snapshot.params['id'];
-    console.log('This is userId: ' + this.userId);
-    
-    this.http.get<any>('localhost:9090/api/v1/user/getUserById/' + this.userId).subscribe(object => {
-      console.log(object);
-      
-      
-    })
+    this.user = this.route.snapshot.data['data']['userData'];
+    this.status = this.route.snapshot.data['data']['statusData'];
 
+    if(this.status == 'FRIENDS'){
+      this.isFriend = true;
+    } else {
+      this.isFriend = false;
+    }
 
     // These are for dev purpouses, should be initialized by values from backend based on logged-in user.
 
@@ -60,7 +62,6 @@ export class UserViewComponent {
     this.user.contactInformation.snapchat = 'snapchatname29881352';
     this.user.contactInformation.email = 'johnnyboi@mail.com';
 
-    this.isFriend = false;
     */
 
     // Lucas har dåligt cs-aim...
