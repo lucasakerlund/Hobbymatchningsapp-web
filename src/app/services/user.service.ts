@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, RendererStyleFlags2 } from '@angular/core';
 import { catchError, map, Observable, of } from 'rxjs';
+import { Match } from '../models/match';
 import { Preference } from '../models/preference';
 import { Region } from '../models/region';
 import { User } from '../models/user';
@@ -28,6 +29,10 @@ export class UserService {
       instagram, discord, snapchat, userPhoneNumber, minAge, maxAge, hobbies, regions, preferedGender
     }, {headers: this.headers})
     .pipe(catchError(error => this.handleError(error, 'Något fel inträffade vid uppdatering.')));
+  }
+
+  getMatches(): Observable<Match[]> {
+    return this.http.get<Match[]>('http://localhost:9090/api/v1/user/getMatches');
   }
 
   handleError(error: any, message: string): Observable<any> {
