@@ -10,7 +10,7 @@ import { ProfileResolver } from './resolvers/profile.resolver';
 import { UserViewComponent } from './user-view/user-view.component';
 
 const routes: Routes = [
-  {path: 'user', component: UserViewComponent},
+  {path: 'user/:id', component: UserViewComponent},
   {path: 'flode', component: FlowComponent},
   {path: 'profile', component: ProfileComponent, resolve: {
     profileData: ProfileResolver

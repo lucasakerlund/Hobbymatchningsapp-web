@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Contact } from '../models/contact';
 import { ContactService } from '../services/contact.service';
 import { ToastService } from '../services/toast.service';
@@ -17,6 +17,7 @@ export class ContactsComponent implements OnInit {
   
   constructor(private contactService: ContactService,
               private route: ActivatedRoute,
+              private router: Router,
               private toastService: ToastService) { }
 
   ngOnInit(): void {
@@ -54,6 +55,13 @@ export class ContactsComponent implements OnInit {
       return {collapsed: true, contact};
     }));
 
+  }
+
+  getClickedProfile(userId: string): void {
+    console.log('Should be a 1 I think: ' + userId);
+
+
+    this.router.navigate(['/user/' + userId])
   }
 
 }

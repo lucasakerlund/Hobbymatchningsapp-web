@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Hobby } from '../models/hobby';
 import { Preference } from '../models/preference';
 import { Region } from '../models/region';
@@ -11,16 +13,28 @@ import { User } from '../models/user';
 })
 export class UserViewComponent {
 
+  userId!: string;
   user!: User;
 
   // When a user is selected, we must also assign true or false to this boolean to tell that to the page - friends display more information
   isFriend!: boolean;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.userId = this.route.snapshot.params['id'];
+    console.log('This is userId: ' + this.userId);
+    
+    this.http.get<any>('localhost:9090/api/v1/user/getUserById/' + this.userId).subscribe(object => {
+      console.log(object);
+      
+      
+    })
+
+
     // These are for dev purpouses, should be initialized by values from backend based on logged-in user.
 
+    /*
     this.user.firstName = 'Johnny';
     this.user.surname = 'Orland';
     this.user.username = 'Big mighty Orlandoh';
@@ -47,6 +61,7 @@ export class UserViewComponent {
     this.user.contactInformation.email = 'johnnyboi@mail.com';
 
     this.isFriend = false;
+    */
 
     // Lucas har dåligt cs-aim...
   }

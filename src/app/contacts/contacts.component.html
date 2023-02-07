@@ -17,7 +17,7 @@
         <h2 class="friends-title">Friends:</h2>
         <div *ngFor="let contact of getFriends()" class="friends-box">
             <div class="friends-box-header">
-                <div type="button" class="friends">{{contact.contact.firstName + ' ' + contact.contact.surname}}</div>
+                <div type="button" class="friends" (click)="getClickedProfile(contact.contact.userId)">{{contact.contact.firstName + ' ' + contact.contact.surname}}</div>
                 
                 <span type="button" (click)="contact.collapsed=!contact.collapsed" class="icon" [class.icon-expand-less]="!contact.collapsed"
                 [class.icon-expand-more]="contact.collapsed"></span>
