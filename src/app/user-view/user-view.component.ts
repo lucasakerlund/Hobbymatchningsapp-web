@@ -63,6 +63,7 @@ export class UserViewComponent {
     this.user.contactInformation.email = 'johnnyboi@mail.com';
 
     */
+   
 
     // Lucas har dåligt cs-aim...
   }
