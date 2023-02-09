@@ -51,12 +51,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     border: 3px solid orange;
     border-radius: 50%;
     height: 120px;
     width: 120px;
     overflow: hidden;
+    &:hover{
+        background-color: #4140405d;
+        .hovertext{
+            visibility: visible;
+        }
+    }
+    .hovertext{
+        color:#fff;
+        font-family: cursive;
+        visibility: hidden;
+    }
 }
+.avatar-picture{
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: auto;
+}
+
 
 .gender, .region{
     color: #fff;

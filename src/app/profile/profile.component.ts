@@ -1,5 +1,5 @@
 import { Options } from '@angular-slider/ngx-slider/options';
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Hobby } from '../models/hobby';
@@ -50,6 +50,24 @@ export class ProfileComponent implements OnInit {
     ceil: 100,
   };
 
+  @ViewChild('fileInput')
+  fileInput!: ElementRef;
+
+  profilePicture: string | ArrayBuffer = '';
+
+  selectImage(): void {
+    this.fileInput.nativeElement.click();
+  }
+
+  uploadImage(event: any): void {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      this.profilePicture = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
   allHobbies: Hobby[] = [
     new Hobby(1, 'JOGGING'),
     new Hobby(2, 'MUSIK'),
@@ -81,7 +99,6 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
     this.user = this.route.snapshot.data['profileData']['user'];
     this.allHobbies = this.route.snapshot.data['profileData']['hobbies'];
     this.allRegions = this.route.snapshot.data['profileData']['regions'];

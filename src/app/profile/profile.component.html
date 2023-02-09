@@ -3,8 +3,10 @@
 
     <div class="first-row">
         <div class="avatar-gender-container">
-            <div class="avatar-container">
-                <img id="avatar" src="/assets/902671383996268564.webp" alt="">
+            <div (click)="selectImage()" type="button" class="avatar-container">
+                <div class="hovertext">Change picture</div>
+                <input id="avatarid" #fileInput type="file" (change)="uploadImage($event)" style="display: none"/>
+                <img id="avatar" [src]="profilePicture" class="avatar-picture">
             </div>
             <div class="gender">{{'Kön: ' + user.gender}}</div>
             <div class="region">Region: {{user.region.name}}</div>
