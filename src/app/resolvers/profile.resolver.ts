@@ -16,6 +16,6 @@ export class ProfileResolver implements Resolve<any> {
   constructor(private userService: UserService, private preferenceService: PreferenceService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-    return forkJoin({user: this.userService.getUser(), hobbies: this.preferenceService.getAllHobbies(), regions: this.preferenceService.getAllRegions()});
+    return forkJoin({user: this.userService.getUser(), hobbies: this.preferenceService.getAllHobbies(), regions: this.preferenceService.getAllRegions(), picture: this.userService.getAvatarImg()});
   }
 }

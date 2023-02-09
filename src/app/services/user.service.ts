@@ -48,5 +48,15 @@ export class UserService {
     this.toastService.show(message, {classname: 'bg-danger text-light', delay: 3000});
     return of(error);
   }
+  sendAvatarImg(file: File): Observable<string>{
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post<string>('http://localhost:9090/api/v1/user/uploadPicture', formData);
+  }
+  getAvatarImg(): Observable<Blob> {
+    return this.http.get<Blob>('http://localhost:9090/api/v1/user/getPicture', { responseType: 'blob' as 'json' });
+  }
 
 }

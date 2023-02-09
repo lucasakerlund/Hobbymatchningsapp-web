@@ -10,6 +10,7 @@ import { RegionController } from '../models/region-controller';
 import { UserService } from '../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from '../services/toast.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -53,7 +54,7 @@ export class ProfileComponent implements OnInit {
   @ViewChild('fileInput')
   fileInput!: ElementRef;
 
-  profilePicture: string | ArrayBuffer = '';
+  profilePicture: string | ArrayBuffer | null = '';
 
   selectImage(): void {
     this.fileInput.nativeElement.click();
@@ -66,7 +67,13 @@ export class ProfileComponent implements OnInit {
       this.profilePicture = e.target.result;
     };
     reader.readAsDataURL(file);
+
+    this.userService.sendAvatarImg(file).subscribe(data => console.log(data));
+    
+
   }
+
+  
 
   allHobbies: Hobby[] = [
     new Hobby(1, 'JOGGING'),
@@ -92,13 +99,19 @@ export class ProfileComponent implements OnInit {
   prefForm!: FormGroup;
 
   constructor(
+    private http: HttpClient,
     private modalService: NgbModal,
     private userService: UserService,
     private route: ActivatedRoute,
     private toastService: ToastService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
+    const reader = new FileReader();
+    reader.readAsDataURL(this.route.snapshot.data['profileData']['picture']);
+    reader.onload = () => {
+      this.profilePicture = reader.result;
+    };
     this.user = this.route.snapshot.data['profileData']['user'];
     this.allHobbies = this.route.snapshot.data['profileData']['hobbies'];
     this.allRegions = this.route.snapshot.data['profileData']['regions'];
@@ -220,7 +233,7 @@ export class ProfileComponent implements OnInit {
       this.prefForm.controls['gender'].value
     ).subscribe(data => {
       this.loadUser();
-      this.toastService.show('Uppdaterade profilsidan.', {classname: 'bg-success text-light', delay: 3000});
+      this.toastService.show('Uppdaterade profilsidan.', { classname: 'bg-success text-light', delay: 3000 });
     });
   }
 
@@ -238,8 +251,8 @@ export class ProfileComponent implements OnInit {
     this.form.controls['facebook'].setValue(this.user.contactInformation.facebook);
 
     //Preferences
-    this.prefForm.controls['hobbies'].setValue(this.allHobbies.map(hobby => this.user.preferences.hobbies.map (userHobby => userHobby.id).includes(hobby.id)));
-    this.prefForm.controls['regions'].setValue(this.allRegions.map(region => this.user.preferences.regions.map (userRegion => userRegion.id).includes(region.id)));
+    this.prefForm.controls['hobbies'].setValue(this.allHobbies.map(hobby => this.user.preferences.hobbies.map(userHobby => userHobby.id).includes(hobby.id)));
+    this.prefForm.controls['regions'].setValue(this.allRegions.map(region => this.user.preferences.regions.map(userRegion => userRegion.id).includes(region.id)));
     this.prefForm.controls['gender'].setValue(this.user.gender);
 
     this.selectedMinAge = this.user.preferences.minAge;
@@ -260,7 +273,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getPersonalRegionName(regionId: number) {
-    if(!regionId) {
+    if (!regionId) {
       return '';
     }
     return this.allRegions.filter((region) => region.id == regionId)[0].name;
@@ -268,7 +281,7 @@ export class ProfileComponent implements OnInit {
 
   calcValuesEdited(): void {
     this.areValuesEdited =
-        this.form.controls['description'].value == this.user.description &&
+      this.form.controls['description'].value == this.user.description &&
         this.form.controls['first-name'].value == this.user.firstName &&
         this.form.controls['surname'].value == this.user.surname &&
         this.form.controls['username'].value == this.user.username &&
@@ -279,13 +292,13 @@ export class ProfileComponent implements OnInit {
         this.form.controls['snapchat'].value == this.user.contactInformation.snapchat &&
         this.form.controls['instagram'].value == this.user.contactInformation.instagram &&
         this.form.controls['facebook'].value == this.user.contactInformation.facebook &&
-        this.arraysHaveSameContent(this.prefForm.controls['hobbies'].value, this.allHobbies.map(hobby => this.user.preferences.hobbies.map (userHobby => userHobby.id).includes(hobby.id))) &&
-        this.arraysHaveSameContent(this.prefForm.controls['regions'].value, this.allRegions.map(region => this.user.preferences.regions.map (userRegion => userRegion.id).includes(region.id))) &&
+        this.arraysHaveSameContent(this.prefForm.controls['hobbies'].value, this.allHobbies.map(hobby => this.user.preferences.hobbies.map(userHobby => userHobby.id).includes(hobby.id))) &&
+        this.arraysHaveSameContent(this.prefForm.controls['regions'].value, this.allRegions.map(region => this.user.preferences.regions.map(userRegion => userRegion.id).includes(region.id))) &&
         this.prefForm.controls['gender'].value == this.user.gender &&
         this.selectedMinAge == this.user.preferences.minAge &&
         this.selectedMaxAge == this.user.preferences.maxAge
-          ? false
-          : true;
+        ? false
+        : true;
   }
 
   arraysHaveSameContent(arr1: any[], arr2: any[]): boolean {
