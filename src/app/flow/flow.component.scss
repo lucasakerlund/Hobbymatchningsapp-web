@@ -21,11 +21,8 @@
 .profile {
     width: 1200px;
     display: flex;
-    justify-content: space-around;
-    align-content: flex-start;
-    flex-wrap: wrap;
+    flex-direction: column;
     padding: 2rem .5rem 5rem .5rem;
-    gap: 1rem;
     align-items: center;
     box-shadow: 3px 3px 20px 4px black;
     border-left: 3px solid orange;
@@ -33,6 +30,31 @@
     background-color: rgba(44, 44, 44, 0.900);
     height: 100%;
     z-index: 1;
+}
+
+.search-container {
+    display: flex;
+    position: relative;
+    border-radius: 1rem;
+    padding: 0 .5rem;
+    margin-bottom: 2rem;
+    background-color: #464646b7;
+
+    .search {
+        color: #fff;
+        font-size: 1.5rem;
+        outline: none;
+        border: none;
+        background-color: transparent;
+    }
+}
+
+.profile-container {
+    display: flex;
+    justify-content: space-around;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .profile-card-container {
@@ -96,6 +118,16 @@
     padding: .5rem;
     color: #fff;
     overflow: auto;
+}
+
+.icon-search {
+    display: flex;
+    align-items: center;
+    &:before{
+        content: 'search';
+        color: #fff;
+        font-size: 2rem;
+    }
 }
 
 @media screen and (max-width: 1200px) {

@@ -44,6 +44,10 @@ export class UserService {
     return this.http.get<any>('http://localhost:9090/api/v1/contacts/getFriendStatus/' + userId);
   }
 
+  getUsersByUsername(username: string): Observable<Match[]> {
+    return this.http.get<Match[]>('http://localhost:9090/api/v1/search/searchByUsername/' + username);
+  }
+
   handleError(error: any, message: string): Observable<any> {
     this.toastService.show(message, {classname: 'bg-danger text-light', delay: 3000});
     return of(error);

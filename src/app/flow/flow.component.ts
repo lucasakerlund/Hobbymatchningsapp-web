@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Match } from '../models/match';
 import { UserService } from '../services/user.service';
 
@@ -13,12 +14,20 @@ export class FlowComponent implements OnInit {
 
   allMatches!: Match[];
 
+  searchForm!: FormGroup;
+
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-
     this.userService.getMatches().subscribe(data => this.allMatches = data);
 
+    this.searchForm = new FormGroup({
+      'search': new FormControl('')
+    });
+  }
+
+  search(): void {
+    this.userService.getUsersByUsername(this.searchForm.controls['search'].value).subscribe(data => this.allMatches = data);
   }
 
 }
