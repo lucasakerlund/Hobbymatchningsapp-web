@@ -48,6 +48,12 @@ export class UserService {
     return this.http.get<Match[]>('http://localhost:9090/api/v1/search/searchByUsername/' + username);
   }
 
+  blockUser(userId: string) {
+    console.log(userId);
+    
+    return this.http.put('http://localhost:9090/api/v1/contacts/blockUser', {friendID: userId})
+  }
+
   handleError(error: any, message: string): Observable<any> {
     this.toastService.show(message, {classname: 'bg-danger text-light', delay: 3000});
     return of(error);
