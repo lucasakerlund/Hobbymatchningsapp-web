@@ -18,6 +18,7 @@ export class UserViewComponent {
   user!: User;
   status!: string;
   messageToFriend!: string;
+  
 
   // When a user is selected, we must also assign true or false to this boolean to tell that to the page - friends display more information
   isFriend!: boolean;
