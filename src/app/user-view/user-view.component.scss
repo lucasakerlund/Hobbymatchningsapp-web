@@ -190,7 +190,36 @@
     text-align: center;
 }
 
-.third-row {}
+.third-row {
+    margin-top: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-intro {
+    color:#fff;
+}
+
+.message-area {
+    resize:none;
+    min-height: 10rem;
+    min-width: 30rem;
+    background-color: rgba(44, 44, 44, 0.700);
+    color: #fff;
+}
+
+.send-msg-button {
+    margin-top: 2%;
+    background-color: rgb(12, 199, 12);
+    border: 3px solid;
+}
+
+.send-msg-button:hover {
+    background-color: rgb(79, 240, 79);
+}
 
 .fourth-row {
     width: 100%;

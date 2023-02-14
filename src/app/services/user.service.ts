@@ -54,6 +54,10 @@ export class UserService {
     return this.http.put('http://localhost:9090/api/v1/contacts/blockUser', {friendID: userId})
   }
 
+  sendMessage(userId: string, content: string) {
+    return this.http.post('http://localhost:9090/api/v1/email/sendEmail', {userID: userId, content})
+  }
+
   handleError(error: any, message: string): Observable<any> {
     this.toastService.show(message, {classname: 'bg-danger text-light', delay: 3000});
     return of(error);

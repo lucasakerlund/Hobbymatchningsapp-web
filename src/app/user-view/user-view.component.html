@@ -42,8 +42,10 @@
         </div>
     </div>
 
-    <div class="third-row">
-
+    <div *ngIf="isFriend" class="third-row">
+        <p class="message-intro">Skicka ett email-meddelande till din vän:</p>
+        <textarea #message class="message-area"></textarea>
+        <button class="send-msg-button" (click)="sendMesasgeToFriend(message.value)" >Send message</button>
     </div>
 
     <div class="fourth-row">

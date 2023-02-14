@@ -17,6 +17,7 @@ export class UserViewComponent {
   userId!: string;
   user!: User;
   status!: string;
+  messageToFriend!: string;
 
   // When a user is selected, we must also assign true or false to this boolean to tell that to the page - friends display more information
   isFriend!: boolean;
@@ -32,7 +33,7 @@ export class UserViewComponent {
     this.userId = this.user.userId;
     this.status = this.route.snapshot.data['data']['statusData'];
 
-    console.log(this.status);
+    console.log('Status between these two users: ' + this.status);
     
 
     if(this.status == 'FRIENDS'){
@@ -46,17 +47,23 @@ export class UserViewComponent {
     }
   }
 
-  addFriend(): void{
+  addFriend(): void {
     console.log('addFriend() called! :)');
     // Call backend and change friendlist status, should now be friends
   }
 
-  blockUser(): void{
+  blockUser(): void {
     this.userService.blockUser(this.userId).subscribe(data => console.log(data));
   }
 
-  removeFriend(): void{
+  removeFriend(): void {
     console.log('removeFriend() called! :/')
+  }
+
+  sendMesasgeToFriend(content: string): void {
+    console.log('This is your message: ' + content);
+
+    this.userService.sendMessage(this.userId, content).subscribe(data => console.log(data));
   }
 
 
