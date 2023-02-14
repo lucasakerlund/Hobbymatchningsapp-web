@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ContactsComponent } from './contacts/contacts.component';
 import { FlowComponent } from './flow/flow.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
@@ -10,7 +11,9 @@ import { ProfileResolver } from './resolvers/profile.resolver';
 import { UserViewResolver } from './resolvers/user-view.resolver';
 import { UserViewComponent } from './user-view/user-view.component';
 
+
 const routes: Routes = [
+  {path: '', component: LandingPageComponent},
   {path: 'user/:id', component: UserViewComponent, resolve: {
     data: UserViewResolver
   }},
