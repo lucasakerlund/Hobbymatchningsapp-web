@@ -29,6 +29,11 @@ export class UserViewComponent {
   }
 
   ngOnInit(): void {
+    console.log('This is your token, sir: ');
+    console.log(sessionStorage);
+    
+    
+
     this.user = this.route.snapshot.data['data']['userData'];
     this.userId = this.user.userId;
     this.status = this.route.snapshot.data['data']['statusData'];
