@@ -5,7 +5,11 @@ import { Hobby } from '../models/hobby';
 import { Preference } from '../models/preference';
 import { Region } from '../models/region';
 import { User } from '../models/user';
+<<<<<<< Updated upstream
 import { UserService } from '../services/user.service';
+=======
+import { ContactService } from '../services/contact.service';
+>>>>>>> Stashed changes
 
 @Component({
   selector: 'app-user-view',
@@ -14,7 +18,6 @@ import { UserService } from '../services/user.service';
 })
 export class UserViewComponent {
 
-  userId!: string;
   user!: User;
   status!: string;
   messageToFriend!: string;
@@ -23,9 +26,13 @@ export class UserViewComponent {
   // When a user is selected, we must also assign true or false to this boolean to tell that to the page - friends display more information
   isFriend!: boolean;
 
+<<<<<<< Updated upstream
   isBlocked!: boolean;
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private userService: UserService) {
+=======
+  constructor(private route: ActivatedRoute, private contactService: ContactService) {
+>>>>>>> Stashed changes
 
   }
 
@@ -53,9 +60,14 @@ export class UserViewComponent {
     }
   }
 
+<<<<<<< Updated upstream
   addFriend(): void {
     console.log('addFriend() called! :)');
     // Call backend and change friendlist status, should now be friends
+=======
+  addFriend(): void{
+    this.contactService.sendRequest(this.user.userId).subscribe(data => console.log(data));
+>>>>>>> Stashed changes
   }
 
   blockUser(): void {

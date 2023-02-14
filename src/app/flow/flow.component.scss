@@ -60,7 +60,7 @@
 .profile-card-container {
     width: 20rem;
     height: 22rem;
-    background-color: rgb(107, 107, 107);
+    background-color: rgba(46, 75, 128, 0.507);
     margin-bottom: 2rem;
     border-radius: 1rem;
 }
@@ -101,6 +101,12 @@
 .name {
     font-size: 1.2rem;
     color: #fff;
+    text-decoration: none;
+
+    &:hover{
+        color: rgb(150, 150, 236);
+        text-decoration: underline;
+    }
 }
 
 .hobby-container {

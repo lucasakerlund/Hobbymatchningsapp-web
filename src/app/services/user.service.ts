@@ -45,7 +45,10 @@ export class UserService {
   }
 
   getUsersByUsername(username: string): Observable<Match[]> {
-    return this.http.get<Match[]>('http://localhost:9090/api/v1/search/searchByUsername/' + username);
+    if(!username) {
+      return this.http.get<Match[]>('http://localhost:9090/api/v1/user/getMatches');
+    }
+    return this.http.get<Match[]>('http://localhost:9090/api/v1/search/searchByKeyword/' + username);
   }
 
   blockUser(userId: string) {

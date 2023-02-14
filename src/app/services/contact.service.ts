@@ -22,8 +22,11 @@ export class ContactService {
   deny(userId: string): Observable<any> {
     return this.http.delete('http://localhost:9090/api/v1/contacts/rejectFriendRequest', {
     responseType: 'text',
-    body: userId
-});
+    body: userId});
+  }
+
+  sendRequest(userId: string): Observable<string> {
+    return this.http.post<string>('http://localhost:9090/api/v1/contacts/sendFriendRequest', {friendID: userId});
   }
 
 }
