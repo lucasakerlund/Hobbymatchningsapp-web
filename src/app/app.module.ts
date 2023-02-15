@@ -20,6 +20,7 @@ import { DateComponent } from './components/date/date.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { ToastContainerComponent } from './toast-container/toast-container.component';
 import { Httpinterceptor } from './services/http.interceptor';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { Httpinterceptor } from './services/http.interceptor';
     CheckboxComponent,
     DateComponent,
     DropdownComponent,
-    ToastContainerComponent
+    ToastContainerComponent,
+    LandingPageComponent
   ],
 
   imports: [

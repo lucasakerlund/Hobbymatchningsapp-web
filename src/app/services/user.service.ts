@@ -49,15 +49,12 @@ export class UserService {
   }
 
   getUsersByUsername(username: string): Observable<Match[]> {
-    return this.http.get<Match[]>('http://localhost:9090/api/v1/search/searchByUsername/' + username);
+    if(!username) {
+      return this.http.get<Match[]>('http://localhost:9090/api/v1/user/getMatches');
+    }
+    return this.http.get<Match[]>('http://localhost:9090/api/v1/search/searchByKeyword/' + username);
   }
-
-  blockUser(userId: string) {
-    console.log(userId);
-    
-    return this.http.put('http://localhost:9090/api/v1/contacts/blockUser', {friendID: userId})
-  }
-
+  
   sendMessage(userId: string, content: string) {
     return this.http.post('http://localhost:9090/api/v1/email/sendEmail', {userID: userId, content})
   }

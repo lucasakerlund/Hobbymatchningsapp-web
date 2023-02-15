@@ -1,12 +1,10 @@
 <div class="background"></div>
 <div class="profile">
 
-    <form [formGroup]="searchForm">
-        <div class="search-container">
-            <input type="text" class="search" placeholder="Användarnamn" formControlName="search">
-            <span type="button" class="icon icon-search"></span>
-        </div>
-    </form>
+    <div class="search-container">
+        <input #usernameInput type="text" class="search" placeholder="Användarnamn">
+        <span type="button" class="icon icon-search" (click)="search(usernameInput.value)"></span>
+    </div>
 
     <div class="profile-container">
         <div *ngFor="let match of allMatches" class="profile-card-container">
@@ -18,7 +16,7 @@
                     <div class="gender">Kön: {{match.user.gender}}</div>
                 </div>
                 <div class="name-hobby-container">
-                    <div class="name">{{match.user.firstName}} {{match.user.surname}}</div>
+                    <a [routerLink]="'/user/' + match.user.userId" class="name">{{match.user.firstName}} {{match.user.surname}}</a>
                     <div class="hobby-container">
                         <div class="hobby">{{match.user.preferences.hobbies[0] ? match.user.preferences.hobbies[0].name : ''}}</div>
                         <div class="hobby">{{match.user.preferences.hobbies[1] ? match.user.preferences.hobbies[1].name : ''}}</div>
