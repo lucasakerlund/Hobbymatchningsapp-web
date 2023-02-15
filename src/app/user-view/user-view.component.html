@@ -4,7 +4,7 @@
     <div class="first-row">
         <div class="avatar-gender-buttons-container">
             <div class="avatar-container">
-                <img id="avatar" src="/assets/902671383996268564.webp" alt="">
+                <img id="avatar" [src]='profilePicture' alt="">
             </div>
             <div class="gender">Kön: {{user.gender}}</div>
             <div class="region">Region: {{user.region.name}}</div>
@@ -33,6 +33,8 @@
             </div>
         </div>
     </div>
+
+    <div class="matching-percent">{{matchPercentage}}</div>
 
     <div class="second-row">
         <div class="hobby-container">

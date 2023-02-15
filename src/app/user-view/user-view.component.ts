@@ -16,9 +16,11 @@ export class UserViewComponent {
 
   userId!: string;
   user!: User;
+  profilePicture!: string | null | ArrayBuffer;
   status!: string;
+  matchPercentage!: string;
+
   messageToFriend!: string;
-  
 
   // When a user is selected, we must also assign true or false to this boolean to tell that to the page - friends display more information
   isFriend!: boolean;
@@ -32,14 +34,24 @@ export class UserViewComponent {
   ngOnInit(): void {
     console.log('This is your token, sir: ');
     console.log(sessionStorage);
-    
-    
 
     this.user = this.route.snapshot.data['data']['userData'];
     this.userId = this.user.userId;
     this.status = this.route.snapshot.data['data']['statusData'];
 
+    console.log("Under this is result, bruh");
+    console.log(this.user.photo);
+
+
+    const reader = new FileReader(); // Ask backend to implement new method that returns photo separatly, does not need to be in user entity
+    reader.readAsDataURL(this.user.photo);
+    reader.onload = () => {
+      this.profilePicture = reader.result;
+    };
+
     console.log('Status between these two users: ' + this.status);
+
+    this.userService.getMatchingPercentage(this.userId).subscribe(data => this.matchPercentage = 'Din och ' + this.user.firstName + 's profil matchar till ' + data + '%');
     
 
     if(this.status == 'FRIENDS'){
@@ -71,6 +83,5 @@ export class UserViewComponent {
 
     this.userService.sendMessage(this.userId, content).subscribe(data => console.log(data));
   }
-
 
 }

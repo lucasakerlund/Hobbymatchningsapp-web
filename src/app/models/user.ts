@@ -14,5 +14,6 @@ export class User {
         public region: Region,
         public gender: string,
         public preferences: Preference,
-        public contactInformation: ContactInformation) { }
+        public contactInformation: ContactInformation,
+        public photo: Blob) {}
 }

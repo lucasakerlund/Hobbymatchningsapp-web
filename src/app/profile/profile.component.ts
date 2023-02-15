@@ -112,6 +112,11 @@ export class ProfileComponent implements OnInit {
     reader.onload = () => {
       this.profilePicture = reader.result;
     };
+
+    console.log("Under this is result, bruh");
+    console.log(this.route.snapshot.data['profileData']['picture']);
+  
+
     this.user = this.route.snapshot.data['profileData']['user'];
     this.allHobbies = this.route.snapshot.data['profileData']['hobbies'];
     this.allRegions = this.route.snapshot.data['profileData']['regions'];
