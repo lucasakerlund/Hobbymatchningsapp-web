@@ -32,7 +32,7 @@ export class UserService {
   }
 
   getMatchingPercentage(userId: string) {
-    return this.http.get('http://localhost:9090/api/v1/user/getMatchPercentage/' + userId);
+    return this.http.get<any>('http://localhost:9090/api/v1/user/getMatchPercentage/' + userId);
   }
 
   getMatches(): Observable<Match[]> {
@@ -73,6 +73,10 @@ export class UserService {
 
   getAvatarImg(): Observable<Blob> {
     return this.http.get<Blob>('http://localhost:9090/api/v1/user/getPicture', { responseType: 'blob' as 'json' });
+  }
+
+  getAvatarImgById(userID: string): Observable<Blob> {
+    return this.http.get<Blob>('http://localhost:9090/api/v1/user/getPictureById/' + userID, { responseType: 'blob' as 'json' });
   }
 
 }
