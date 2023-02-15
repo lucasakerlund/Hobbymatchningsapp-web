@@ -7,7 +7,10 @@
     </div>
 
     <div class="profile-container">
-        <div *ngFor="let match of allMatches" class="profile-card-container">
+        <div *ngFor="let match of allMatches" class="profile-card-container"
+        [class.high-match]="match.matchPercentage >= 66"
+        [class.medium-match]="match.matchPercentage < 66 && match.matchPercentage >= 33"
+        [class.low-match]="match.matchPercentage < 33">
             <div class="first-row">
                 <div class="avatar-gender-container">
                     <div class="avatar-container">

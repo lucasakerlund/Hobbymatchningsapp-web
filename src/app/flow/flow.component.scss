@@ -60,9 +60,21 @@
 .profile-card-container {
     width: 20rem;
     height: 22rem;
-    background-color: rgba(46, 75, 128, 0.507);
     margin-bottom: 2rem;
     border-radius: 1rem;
+
+    &.high-match{
+        background-color: rgba(46, 128, 66, 0.507);
+    }
+    
+    &.medium-match {
+        background-color: rgba(128, 95, 46, 0.507);
+    }
+    
+    &.low-match {
+        background-color: rgba(128, 46, 46, 0.507);
+    }
+
 }
 
 .first-row {
