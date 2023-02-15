@@ -51,11 +51,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     border: 3px solid rgb(12, 199, 12);
     border-radius: 50%;
     height: 120px;
     width: 120px;
     overflow: hidden;
+}
+
+.avatar {
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: auto;
 }
 
 .gender {
@@ -135,6 +143,14 @@
     color: #fff;
     font-size: 2rem;
 
+}
+
+.matching-percent {
+    margin-top: 2rem;
+    color: rgb(12, 199, 12);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    text-decoration: underline;
 }
 
 .description-container {

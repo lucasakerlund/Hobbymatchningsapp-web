@@ -31,6 +31,10 @@ export class UserService {
     .pipe(catchError(error => this.handleError(error, 'Något fel inträffade vid uppdatering.')));
   }
 
+  getMatchingPercentage(userId: string) {
+    return this.http.get<any>('http://localhost:9090/api/v1/user/getMatchPercentage/' + userId);
+  }
+
   getMatches(): Observable<Match[]> {
     return this.http.get<Match[]>('http://localhost:9090/api/v1/user/getMatches');
   }
@@ -66,8 +70,13 @@ export class UserService {
 
     return this.http.post<string>('http://localhost:9090/api/v1/user/uploadPicture', formData);
   }
+
   getAvatarImg(): Observable<Blob> {
     return this.http.get<Blob>('http://localhost:9090/api/v1/user/getPicture', { responseType: 'blob' as 'json' });
+  }
+
+  getAvatarImgById(userID: string): Observable<Blob> {
+    return this.http.get<Blob>('http://localhost:9090/api/v1/user/getPictureById/' + userID, { responseType: 'blob' as 'json' });
   }
 
 }

@@ -1,5 +1,6 @@
 <div class="background"></div>
 <div class="profile">
+<<<<<<< HEAD
   <div class="first-row">
     <div class="avatar-gender-buttons-container">
       <div class="avatar-container">
@@ -47,6 +48,50 @@
           >{{ user.description }}</textarea
         >
       </div>
+=======
+
+    <div class="first-row">
+        <div class="avatar-gender-buttons-container">
+            <div class="avatar-container">
+                <img id="avatar" class="avatar" [src]='profilePicture' alt="">
+            </div>
+            <div class="gender">Kön: {{user.gender}}</div>
+            <div class="region">Region: {{user.region.name}}</div>
+
+            <div *ngIf="!isFriend && !isBlocked" class="add-block-div">
+                <button class="add-button" (click)="addFriend()"> <span class="icon icon-add"></span>Lägg till vän</button>
+                <button class="block-button" (click)="blockUser()"> <span class="icon icon-block"></span> </button>
+            </div>
+
+            <div *ngIf="isFriend && !isBlocked" class="remove-block-div">
+                <button class="remove-button" (click)="removeFriend()"> <span class="icon icon-remove"></span>Ta bort vän</button>
+                <button class="block-button" (click)="blockUser()"> <span class="icon icon-block"></span> </button>
+            </div>
+
+            <div *ngIf="isBlocked" class="is-blocked-block-div"> <!-- Den här BORDE displayas när man klickar på en blokerad user -->
+                <button class="unblock-button" (click)="blockUser()"> <span class="icon icon-block"></span>Avblockera</button>
+            </div>
+
+        </div>
+        <div class="name-description-container">
+            <div class="name">{{user.firstName}} {{user.surname}}</div>
+            <div class="description-container">
+                <label class="description-label" for="description">Beskrivning</label>
+                <textarea class="description" id="description" rows="6" cols="50" maxlength="300"
+                    readonly>{{user.description}}</textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="matching-percent">{{matchPercentage}}</div>
+
+    <div class="second-row">
+        <div class="hobby-container">
+            <div class="hobby" *ngFor="let hobby of user.preferences.hobbies">
+                <label class="hobby-text">{{hobby.name}}</label>
+            </div>
+        </div>
+>>>>>>> b955f8d428dbceb80b05f58896d1bdd35b039595
     </div>
   </div>
 
