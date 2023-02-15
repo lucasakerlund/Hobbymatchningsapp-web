@@ -52,6 +52,12 @@ export class UserViewComponent {
     });
   }
 
+  unblockUser(): void {
+    this.contactService.unblockUser(this.user.userId).subscribe(data => {
+      this.toastService.show(`Blockerade användare: ${this.user.firstName + ' ' + this.user.surname}.`, {classname: 'bg-success text-light', delay: 3000});
+    });
+  }
+
   removeFriend(): void {
     this.contactService.unfriend(this.user.userId).subscribe(data => {
       this.toastService.show(`Tog bort användare: ${this.user.firstName + ' ' + this.user.surname}.`, {classname: 'bg-success text-light', delay: 3000});

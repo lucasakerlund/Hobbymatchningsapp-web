@@ -39,5 +39,9 @@ export class ContactService {
     return this.http.put('http://localhost:9090/api/v1/contacts/blockUser', {friendID: userId})
   }
 
+  unblockUser(userId: string) {
+    return this.http.put('http://localhost:9090/api/v1/contacts/unblock', {friendID: userId})
+  }
+
 
 }
