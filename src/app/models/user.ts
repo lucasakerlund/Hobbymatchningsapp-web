@@ -15,5 +15,5 @@ export class User {
         public gender: string,
         public preferences: Preference,
         public contactInformation: ContactInformation,
-        public photo: Blob) {}
+        public photo: string | ArrayBuffer | null) { }
 }

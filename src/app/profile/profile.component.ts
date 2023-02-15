@@ -11,6 +11,7 @@ import { UserService } from '../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from '../services/toast.service';
 import { HttpClient } from '@angular/common/http';
+import { GenderController } from '../models/gender-controller';
 
 @Component({
   selector: 'app-profile',
@@ -90,7 +91,7 @@ export class ProfileComponent implements OnInit {
 
   allRegions!: Region[];
 
-  allGenders: string[] = ['Män', 'Kvinnor', 'Icke-specifierade', 'Samtliga'];
+  allGenders: string[] = ['MAN', 'WOMAN', 'OTHER'];
 
   user!: User;
 
@@ -164,7 +165,17 @@ export class ProfileComponent implements OnInit {
           return control;
         })
       ),
-      'gender': new FormControl(this.user.preferences.gender),
+      'genders': new FormArray(
+        this.allGenders.map(gender => {
+          console.log(this.user.preferences);
+          const control = new GenderController(
+            this.user.preferences.gender.includes(gender)
+          );
+          control.name = gender;
+          return control;
+          }
+        )
+      ),
     });
 
     this.form.valueChanges.subscribe((value) => {
@@ -235,7 +246,7 @@ export class ProfileComponent implements OnInit {
       this.selectedMaxAge,
       (this.prefForm.controls['hobbies'] as FormArray).controls.filter(controller => controller.value).map(controller => this.allHobbies.filter(hobby => hobby.id == (controller as HobbyController).hobbyId)[0].name),
       (this.prefForm.controls['regions'] as FormArray).controls.filter(controller => controller.value).map(controller => this.allRegions.filter(region => region.id == (controller as RegionController).regionId)[0].name),
-      this.prefForm.controls['gender'].value
+      (this.prefForm.controls['genders'] as FormArray).controls.filter(controller => controller.value).map(controller => this.allGenders.filter(gender => gender == (controller as GenderController).name)[0]),
     ).subscribe(data => {
       this.loadUser();
       this.toastService.show('Uppdaterade profilsidan.', { classname: 'bg-success text-light', delay: 3000 });
@@ -258,7 +269,7 @@ export class ProfileComponent implements OnInit {
     //Preferences
     this.prefForm.controls['hobbies'].setValue(this.allHobbies.map(hobby => this.user.preferences.hobbies.map(userHobby => userHobby.id).includes(hobby.id)));
     this.prefForm.controls['regions'].setValue(this.allRegions.map(region => this.user.preferences.regions.map(userRegion => userRegion.id).includes(region.id)));
-    this.prefForm.controls['gender'].setValue(this.user.gender);
+    this.prefForm.controls['genders'].setValue(this.allGenders.map(gender => this.user.preferences.gender.map(userGender => userGender).includes(gender)));
 
     this.selectedMinAge = this.user.preferences.minAge;
     this.selectedMaxAge = this.user.preferences.maxAge;
@@ -284,6 +295,21 @@ export class ProfileComponent implements OnInit {
     return this.allRegions.filter((region) => region.id == regionId)[0].name;
   }
 
+  gendersToDisplay(): string[] {
+    return (this.prefForm.controls['genders'] as FormArray).controls
+    .filter(control => control.value)
+    .map(control => {
+      switch((control as GenderController).name) {
+      case "MAN":
+        return "Man";
+      case "WOMAN":
+        return " Kvinna";
+        default:
+          return "Annan";
+      }
+    })
+  }
+
   calcValuesEdited(): void {
     this.areValuesEdited =
       this.form.controls['description'].value == this.user.description &&
@@ -299,7 +325,7 @@ export class ProfileComponent implements OnInit {
         this.form.controls['facebook'].value == this.user.contactInformation.facebook &&
         this.arraysHaveSameContent(this.prefForm.controls['hobbies'].value, this.allHobbies.map(hobby => this.user.preferences.hobbies.map(userHobby => userHobby.id).includes(hobby.id))) &&
         this.arraysHaveSameContent(this.prefForm.controls['regions'].value, this.allRegions.map(region => this.user.preferences.regions.map(userRegion => userRegion.id).includes(region.id))) &&
-        this.prefForm.controls['gender'].value == this.user.gender &&
+        this.arraysHaveSameContent(this.prefForm.controls['genders'].value, this.allGenders.map(gender => this.user.preferences.gender.map(userGender => userGender).includes(gender))) &&
         this.selectedMinAge == this.user.preferences.minAge &&
         this.selectedMaxAge == this.user.preferences.maxAge
         ? false

@@ -39,7 +39,29 @@
                 [control]="form.controls['gender']" [values]="{'MAN': 'Man', 'WOMAN': 'Kvinna', 'OTHER': 'Annat'}"></app-dropdown>
 
                 <app-dropdown class="mt-3" label="Region:" identifier="region"
-                [control]="form.controls['region']" [values]="{'Stockholms län': 'Stockholms län', 'Blekinge län': 'Blekinge län', 'Gotlands län': 'Gotlands län'}"></app-dropdown>
+                [control]="form.controls['region']" [values]="{
+                    'Blekinge län': 'Blekinge län',
+                    'Dalarnas län': 'Dalarnas län',
+                    'Gotlands län': 'Gotlands län',
+                    'Gävleborgs län': 'Gävleborgs län',
+                    'Hallands län': 'Hallands län',
+                    'Jämtlands län': 'Jämtlands län',
+                    'Jönköpings län': 'Jönköpings län',
+                    'Kalmar län': 'Kalmar län',
+                    'Kronobergs län': 'Kronobergs län',
+                    'Norrbottens län': 'Norrbottens län',
+                    'Skåne län': 'Skåne län',
+                    'Stockholms län': 'Stockholms län',
+                    'Södermanlands län': 'Södermanlands län',
+                    'Uppsala län': 'Uppsala län',
+                    'Värmlands län': 'Värmlands län',
+                    'Västerbottens län': 'Västerbottens län',
+                    'Västernorrlands län': 'Västernorrlands län',
+                    'Västmanlands län': 'Västmanlands län',
+                    'Västra Götalands län': 'Västra Götalands län',
+                    'Örebro län': 'Örebro län',
+                    'Östergötlands län': 'Östergötlands län'
+                }"></app-dropdown>
 
             </div>
         </div>

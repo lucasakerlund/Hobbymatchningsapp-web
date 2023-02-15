@@ -43,7 +43,7 @@
                 <label class="prefs-labels">Jag vill träffa: </label>
                 <label class="pref-gender-label"></label>
                 <span type="button" class="gender-preference-button"
-                    (click)="openGenderModal(genderContent)">{{prefForm.controls['gender'].value}}</span>
+                    (click)="openGenderModal(genderContent)">{{gendersToDisplay()}}</span>
             </div>
 
             <div class="region-preferences">
@@ -166,11 +166,13 @@
 <ng-template #genderContent let-modal>
     <div class="container modal-container">
         <form [formGroup]="prefForm">
-            <div *ngFor="let gender of allGenders; index as iter" class="modal-gender-item form-check">
-                <label [for]="'modal-gender-item' + iter"
-                    class="form-check-label modal-region-item-label">{{gender}}</label>
-                <input type="radio" name="gender" [id]="'modal-gender-item' + iter" [value]="gender"
-                    class="form-check-input" formControlName="gender">
+            <div formArrayName="genders">
+                <div *ngFor="let gender of allGenders; index as iter" class="modal-gender-item form-check">
+                    <label [for]="'modal-gender-item' + iter"
+                        class="form-check-label modal-region-item-label">{{gender}}</label>
+                    <input type="checkbox" [name]="'modal-gender-item' + iter" [id]="'modal-gender-item' + iter"
+                        class="form-check-input" [formControlName]="iter">
+                </div>
             </div>
         </form>
         <div type="button" class="close" (click)="modal.dismiss('Close')">Klar</div>

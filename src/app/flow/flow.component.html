@@ -14,16 +14,16 @@
             <div class="first-row">
                 <div class="avatar-gender-container">
                     <div class="avatar-container">
-                        <img id="avatar" src="/assets/902671383996268564.webp" alt="">
+                        <img id="avatar" class="avatar" [src]="match.user.photo" alt="">
                     </div>
                     <div class="gender">Kön: {{match.user.gender}}</div>
                 </div>
                 <div class="name-hobby-container">
                     <a [routerLink]="'/user/' + match.user.userId" class="name">{{match.user.firstName}} {{match.user.surname}}</a>
                     <div class="hobby-container">
-                        <div class="hobby">{{match.user.preferences.hobbies[0] ? match.user.preferences.hobbies[0].name : ''}}</div>
-                        <div class="hobby">{{match.user.preferences.hobbies[1] ? match.user.preferences.hobbies[1].name : ''}}</div>
-                        <div class="hobby">{{match.user.preferences.hobbies[2] ? match.user.preferences.hobbies[2].name : ''}}</div>
+                        <div *ngIf="match.user.preferences.hobbies[0]" class="hobby mb-1">{{match.user.preferences.hobbies[0].name}}</div>
+                        <div *ngIf="match.user.preferences.hobbies[1]" class="hobby mb-1">{{match.user.preferences.hobbies[1].name}}</div>
+                        <div *ngIf="match.user.preferences.hobbies[2]" class="hobby">{{match.user.preferences.hobbies[2].name}}</div>
                     </div>
                 </div>
             </div>

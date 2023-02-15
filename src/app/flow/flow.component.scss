@@ -94,11 +94,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     border: 3px solid orange;
     border-radius: 1rem;
     height: 120px;
     width: 120px;
     overflow: hidden;
+}
+
+.avatar {
+    position: absolute;
+    width: 100%;
+    height: auto;
 }
 
 .gender{
@@ -127,8 +134,13 @@
 }
 
 .hobby {
+    display: flex;
+    justify-content: center;
     width: 5rem;
     color: #fff;
+    padding: .2rem;
+    border-radius: .2rem;
+    background-color: rgba(20, 20, 20, 0.507);
 }
 
 .description {

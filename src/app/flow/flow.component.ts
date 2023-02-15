@@ -14,11 +14,34 @@ export class FlowComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getMatches().subscribe(data => this.allMatches = data);
+    this.userService.getMatches().subscribe(data => {
+      this.allMatches = data;
+      this.loadProfilePictures();
+    });
+    this.loadProfilePictures();
   }
 
   search(username: string): void {
-    this.userService.getUsersByUsername(username).subscribe(data => {this.allMatches = data; console.log(data);});
+    this.userService.getUsersByUsername(username).subscribe(data => {
+      this.allMatches = data;
+      this.loadProfilePictures();
+    });
+  }
+
+  loadProfilePictures(): void {
+    this.allMatches?.forEach(match => {
+      this.userService.getAvatarImgById(match.user.userId).subscribe(data => {
+        console.log('Data under');
+        console.log(data);
+  
+        const reader = new FileReader();
+        reader.readAsDataURL(data)
+        reader.onload = () => {
+          match.user.photo = reader.result;
+          console.log('onload has happened!');
+        }
+      });
+    });
   }
 
 }

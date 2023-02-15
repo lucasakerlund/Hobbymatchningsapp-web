@@ -43,16 +43,14 @@ export class UserViewComponent {
 
     // Should add users image/avatar to the page
     this.userService.getAvatarImgById(this.userId).subscribe(data => {
-      console.log('Data under');
-      console.log(data);
 
       const reader = new FileReader();
       reader.readAsDataURL(data)
       reader.onload = () => {
         this.profilePicture = reader.result;
         console.log('onload has happened!');
-      };
-    })
+      }
+    });
 
     console.log('Status between these two users: ' + this.status);
 
