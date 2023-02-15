@@ -42,7 +42,7 @@ export class UserViewComponent {
     console.log(this.user.photo);
 
     // Should add users image/avatar to the page
-    this.userService.getAvatarImgById(this.userId).subscribe(data => {  // No errors created BUT image does not display correctly...
+    this.userService.getAvatarImgById(this.userId).subscribe(data => {
       console.log('Data under');
       console.log(data);
 
