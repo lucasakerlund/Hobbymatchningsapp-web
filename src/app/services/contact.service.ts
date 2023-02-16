@@ -25,8 +25,8 @@ export class ContactService {
     body: userId});
   }
 
-  sendRequest(userId: string): Observable<string> {
-    return this.http.post<string>('http://localhost:9090/api/v1/contacts/sendFriendRequest', {friendID: userId});
+  sendRequest(userId: string): Observable<any> {
+    return this.http.post<any>('http://localhost:9090/api/v1/contacts/sendFriendRequest', {friendID: userId});
   }
 
   unfriend(userId: string): Observable<any> {
